@@ -7,19 +7,21 @@
 
 import Foundation
 
-final class RemoteQuoteLoader {
+final class RemoteQuoteLoader: CurrencyQuoteLoader {
     private let httpClient: HttpClient
+    private let url: URL
     
     enum LoadError: Error {
         case invalidResponse
         case invalidData
     }
     
-    init(httpClient: HttpClient) {
+    init(httpClient: HttpClient, url: URL) {
         self.httpClient = httpClient
+        self.url = url
     }
     
-    func load(from url: URL) async throws -> [Currency] {
+    func load() async throws -> [Currency] {
         let (data, httpResponse) = try await httpClient.get(from: url)
         
         if httpResponse.statusCode != 200 {

@@ -21,7 +21,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
         
-        _ = try await sut.load(from: url)
+        _ = try await sut.load()
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -31,8 +31,8 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
      
-        _ = try await sut.load(from: url)
-        _ = try await sut.load(from: url)
+        _ = try await sut.load()
+        _ = try await sut.load()
         
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
@@ -44,7 +44,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         var didFailWithError: Error?
         
         do {
-            _ = try await sut.load(from: url)
+            _ = try await sut.load()
         } catch {
             didFailWithError = error
         }
@@ -66,7 +66,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
                 var didFailWithError: Error?
                 
                 do {
-                    _ = try await sut.load(from: url)
+                    _ = try await sut.load()
                 } catch {
                     didFailWithError = error
                 }
@@ -83,7 +83,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         var didFailWithError: Error?
         
         do {
-            _ = try await sut.load(from: url)
+            _ = try await sut.load()
         } catch {
             didFailWithError = error
         }
@@ -97,7 +97,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
         
         do {
-            let currencies = try await sut.load(from: url)
+            let currencies = try await sut.load()
             XCTAssertEqual(currencies, [])
         } catch {
             XCTFail("The load should completes with success.")
@@ -112,7 +112,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         client.result = makeSuccessResponse(withStatusCode: 200, data: data, url: url)
         
         do {
-            let currencies = try await sut.load(from: url)
+            let currencies = try await sut.load()
             XCTAssertEqual(currencies, expectedCurrencies)
           
         } catch {
@@ -124,7 +124,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     
     private func makeSUT(url: URL = anyURL()) -> (sut: RemoteQuoteLoader, httpClient: HttpClientSpy) {
         let client = HttpClientSpy()
-        let sut = RemoteQuoteLoader(httpClient: client)
+        let sut = RemoteQuoteLoader(httpClient: client, url: url)
         
         return (sut, client)
     }
