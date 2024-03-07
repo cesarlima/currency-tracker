@@ -66,7 +66,7 @@ extension Currency {
 extension DateFormatter {
     static let iso8601: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-YYYY HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter
     }()
 }
@@ -167,6 +167,22 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_deliversCurrenciesOn200HTTPResponseWithJSONCurrencies() async throws {
+       let (data, expectedCurrencies) = makeCurrencies()
+        
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        client.result = makeSuccessResponse(withStatusCode: 200, data: data, url: url)
+        
+        do {
+            let currencies = try await sut.load(from: url)
+            XCTAssertEqual(currencies, expectedCurrencies)
+          
+        } catch {
+            XCTFail("The load should completes with success.")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = anyURL()) -> (sut: RemoteQuoteLoader, httpClient: HttpClientSpy) {
@@ -174,6 +190,57 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         let sut = RemoteQuoteLoader(httpClient: client)
         
         return (sut, client)
+    }
+    
+    private func makeCurrencies() -> (data: Data, currencies: [Currency]) {
+        let data = """
+        {
+           "USDBRL":{
+              "code":"USD",
+              "codein":"BRL",
+              "name":"Dólar Americano/Real Brasileiro",
+              "high":"4.9473",
+              "low":"4.9451",
+              "varBid":"0.0005",
+              "pctChange":"0.01",
+              "bid":"4.9446",
+              "ask":"4.9456",
+              "timestamp":"1709773060",
+              "create_date":"2024-03-06 21:57:40"
+           },
+           "EURBRL":{
+              "code":"EUR",
+              "codein":"BRL",
+              "name":"Euro/Real Brasileiro",
+              "high":"5.3884",
+              "low":"5.3884",
+              "varBid":"0",
+              "pctChange":"0",
+              "bid":"5.3844",
+              "ask":"5.3924",
+              "timestamp":"1709772809",
+              "create_date":"2024-03-06 21:53:29"
+           },
+           "BTCBRL":{
+              "code":"BTC",
+              "codein":"BRL",
+              "name":"Bitcoin/Real Brasileiro",
+              "high":"337412",
+              "low":"314801",
+              "varBid":"12379",
+              "pctChange":"3.89",
+              "bid":"330376",
+              "ask":"330618",
+              "timestamp":"1709773087",
+              "create_date":"2024-03-06 21:58:07"
+           }
+        }
+        """.data(using: .utf8)!
+        
+        let jsonDict = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: [String: Any]]
+        let currencies = jsonDict.compactMap { Currency(json: $0.value) }
+        return (data, currencies)
+        
     }
 }
 
