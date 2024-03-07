@@ -71,7 +71,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
                     didFailWithError = error
                 }
                 
-                XCTAssertEqual(didFailWithError as! RemoteQuoteLoader.LoadError, .invalidResponse)
+                XCTAssertEqual(didFailWithError as! RemoteCurrencyQuoteLoader.LoadError, .invalidResponse)
             }
         }
     }
@@ -88,7 +88,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
             didFailWithError = error
         }
         
-        XCTAssertEqual(didFailWithError as! RemoteQuoteLoader.LoadError, .invalidData)
+        XCTAssertEqual(didFailWithError as! RemoteCurrencyQuoteLoader.LoadError, .invalidData)
     }
     
     func test_load_deliversNoCurrenciesOn200HTTPResponseWithEmptyJSON() async throws {
@@ -122,9 +122,9 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(url: URL = anyURL()) -> (sut: RemoteQuoteLoader, httpClient: HttpClientSpy) {
+    private func makeSUT(url: URL = anyURL()) -> (sut: RemoteCurrencyQuoteLoader, httpClient: HttpClientSpy) {
         let client = HttpClientSpy()
-        let sut = RemoteQuoteLoader(httpClient: client, url: url)
+        let sut = RemoteCurrencyQuoteLoader(httpClient: client, url: url)
         
         return (sut, client)
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RemoteQuoteLoader: CurrencyQuoteLoader {
+final class RemoteCurrencyQuoteLoader: CurrencyQuoteLoader {
     private let httpClient: HttpClient
     private let url: URL
     

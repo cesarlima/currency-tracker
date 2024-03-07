@@ -12,7 +12,7 @@
 		8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BD82B99E57C00B1EC8A /* Currency.swift */; };
 		8E9F3BDB2B99E77300B1EC8A /* CurrencyQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */; };
 		8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */; };
-		8E9F3BE42B9A1C5700B1EC8A /* RemoteQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE32B9A1C5700B1EC8A /* RemoteQuoteLoader.swift */; };
+		8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +32,7 @@
 		8E9F3BD82B99E57C00B1EC8A /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteLoader.swift; sourceTree = "<group>"; };
 		8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
-		8E9F3BE32B9A1C5700B1EC8A /* RemoteQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteQuoteLoader.swift; sourceTree = "<group>"; };
+		8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCurrencyQuoteLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */,
-				8E9F3BE32B9A1C5700B1EC8A /* RemoteQuoteLoader.swift */,
+				8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */,
 			);
 			path = "Currencies Remote";
 			sourceTree = "<group>";
@@ -219,7 +219,7 @@
 				8E9F3BDB2B99E77300B1EC8A /* CurrencyQuoteLoader.swift in Sources */,
 				8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */,
 				8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */,
-				8E9F3BE42B9A1C5700B1EC8A /* RemoteQuoteLoader.swift in Sources */,
+				8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
