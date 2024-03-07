@@ -10,6 +10,7 @@
 		8E9F3BC82B99E4BF00B1EC8A /* CurrencyTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */; };
 		8E9F3BCD2B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BCC2B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.swift */; };
 		8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BD82B99E57C00B1EC8A /* Currency.swift */; };
+		8E9F3BDB2B99E77300B1EC8A /* CurrencyQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,7 @@
 		8E9F3BC72B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyTrackerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9F3BCC2B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTrackerCoreTests.swift; sourceTree = "<group>"; };
 		8E9F3BD82B99E57C00B1EC8A /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				8E9F3BD82B99E57C00B1EC8A /* Currency.swift */,
+				8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E9F3BDB2B99E77300B1EC8A /* CurrencyQuoteLoader.swift in Sources */,
 				8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
