@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8E9F3BC82B99E4BF00B1EC8A /* CurrencyTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */; };
 		8E9F3BCD2B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BCC2B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.swift */; };
-		8E9F3BCE2B99E4BF00B1EC8A /* CurrencyTrackerCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9F3BC22B99E4BF00B1EC8A /* CurrencyTrackerCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BD82B99E57C00B1EC8A /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,9 +24,9 @@
 
 /* Begin PBXFileReference section */
 		8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CurrencyTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E9F3BC22B99E4BF00B1EC8A /* CurrencyTrackerCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyTrackerCore.h; sourceTree = "<group>"; };
 		8E9F3BC72B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyTrackerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9F3BCC2B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTrackerCoreTests.swift; sourceTree = "<group>"; };
+		8E9F3BD82B99E57C00B1EC8A /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 		8E9F3BC12B99E4BF00B1EC8A /* CurrencyTrackerCore */ = {
 			isa = PBXGroup;
 			children = (
-				8E9F3BC22B99E4BF00B1EC8A /* CurrencyTrackerCore.h */,
+				8E9F3BD72B99E54700B1EC8A /* Domain */,
 			);
 			path = CurrencyTrackerCore;
 			sourceTree = "<group>";
@@ -82,6 +82,14 @@
 			path = CurrencyTrackerCoreTests;
 			sourceTree = "<group>";
 		};
+		8E9F3BD72B99E54700B1EC8A /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				8E9F3BD82B99E57C00B1EC8A /* Currency.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -89,7 +97,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E9F3BCE2B99E4BF00B1EC8A /* CurrencyTrackerCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +151,7 @@
 				TargetAttributes = {
 					8E9F3BBE2B99E4BF00B1EC8A = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 					};
 					8E9F3BC62B99E4BF00B1EC8A = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -191,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +344,7 @@
 		8E9F3BD22B99E4BF00B1EC8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -359,6 +369,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -366,6 +377,7 @@
 		8E9F3BD32B99E4BF00B1EC8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -397,6 +409,7 @@
 		8E9F3BD52B99E4BF00B1EC8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D6L4Z69F44;
@@ -412,6 +425,7 @@
 		8E9F3BD62B99E4BF00B1EC8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D6L4Z69F44;
