@@ -17,6 +17,7 @@ final class RemoteQuoteLoader {
     
     enum LoadError: Error {
         case invalidResponse
+        case invalidData
     }
     
     init(httpClient: HttpClient) {
@@ -24,12 +25,48 @@ final class RemoteQuoteLoader {
     }
     
     func load(from url: URL) async throws {
-        let (_, httpResponse) = try await httpClient.get(from: url)
+        let (data, httpResponse) = try await httpClient.get(from: url)
         
         if httpResponse.statusCode != 200 {
             throw LoadError.invalidResponse
         }
+        
+        _ = try map(data, from: httpResponse)
     }
+    
+    private func map(_ data: Data, from response: HTTPURLResponse) throws -> [Currency] {
+        do {
+            let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as! [String: [String: Any]]
+            let currencies = jsonDict.compactMap { Currency(json: $0.value) }
+            return currencies
+        } catch {
+            throw LoadError.invalidData
+        }
+    }
+}
+
+extension Currency {
+    init?(json: [String: Any]) {
+        guard let name = json["name"] as? String,
+              let code = json["code"] as? String,
+              let codeIn = json["codein"] as? String,
+              let bid = json["bid"] as? String,
+              let quote = Double(bid),
+              let dateString = json["create_date"] as? String,
+              let quoteDate = DateFormatter.iso8601.date(from: dateString) else {
+            return nil
+        }
+        
+        self.init(name: name, code: code, codeIn: codeIn, quote: quote, quoteDate: quoteDate)
+    }
+}
+
+extension DateFormatter {
+    static let iso8601: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-YYYY HH:mm:ss"
+        return formatter
+    }()
 }
 
 final class CurrencyQuoteLoaderTests: XCTestCase {
@@ -43,7 +80,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     func test_load_requestsDataFromURL() async throws {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        client.result = makeSuccessResponse(withStatusCode: 200, data: Data(), url: url)
+        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
         
         try await sut.load(from: url)
         
@@ -53,7 +90,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     func test_load_requestsDataFromURLTwice() async throws {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
-        client.result = makeSuccessResponse(withStatusCode: 200, data: Data(), url: url)
+        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
      
         try await sut.load(from: url)
         try await sut.load(from: url)
@@ -98,6 +135,21 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
                 XCTAssertEqual(didFailWithError as! RemoteQuoteLoader.LoadError, .invalidResponse)
             }
         }
+    }
+    
+    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() async throws {
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("invalid json".utf8), url: url)
+        var didFailWithError: Error?
+        
+        do {
+            try await sut.load(from: url)
+        } catch {
+            didFailWithError = error
+        }
+        
+        XCTAssertEqual(didFailWithError as! RemoteQuoteLoader.LoadError, .invalidData)
     }
     
     // MARK: - Helpers
