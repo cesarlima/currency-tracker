@@ -9,9 +9,13 @@ import Foundation
 
 enum CurrencyMapper {
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> [Currency] {
+        guard response.statusCode == 200 else {
+            throw RemoteCurrencyQuoteLoader.LoadError.invalidResponse
+        }
+        
         do {
             let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as! [String: [String: Any]]
-            let currencies = jsonDict.compactMap { Currency(json: $0.value) }
+            let currencies = jsonDict.compactMap { Currency(json: $0.value) }.sorted { $0.code < $1.code }
             return currencies
         } catch {
             throw RemoteCurrencyQuoteLoader.LoadError.invalidData

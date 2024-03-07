@@ -174,10 +174,13 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         }
         """.data(using: .utf8)!
         
-        let jsonDict = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: [String: Any]]
-        let currencies = jsonDict.compactMap { Currency(json: $0.value) }
+        let response = HTTPURLResponse(
+            url: anyURL(),
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: nil)!
+        let currencies = try! CurrencyMapper.map(data, from: response)
         return (data, currencies)
-        
     }
 }
 

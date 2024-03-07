@@ -24,10 +24,6 @@ final class RemoteCurrencyQuoteLoader: CurrencyQuoteLoader {
     func load() async throws -> [Currency] {
         let (data, httpResponse) = try await httpClient.get(from: url)
         
-        if httpResponse.statusCode != 200 {
-            throw LoadError.invalidResponse
-        }
-        
         let result = try CurrencyMapper.map(data, from: httpResponse)
         
         return result
