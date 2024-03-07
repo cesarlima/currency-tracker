@@ -184,7 +184,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     }
 }
 
-final class HttpClientSpy: HttpClient {
+private final class HttpClientSpy: HttpClient {
     typealias LoadResponse = Swift.Result<(Data, HTTPURLResponse), Error>
     
     private(set) var requestedURLs: [URL] = []
@@ -207,15 +207,15 @@ final class HttpClientSpy: HttpClient {
     }
 }
 
-func makeNSError() -> NSError {
+private func makeNSError() -> NSError {
     NSError(domain: "any erro", code: 0)
 }
 
-func anyURL() -> URL {
+private func anyURL() -> URL {
     URL(string: "http://any-url.com")!
 }
 
-func makeSuccessResponse(withStatusCode code: Int, data: Data, url: URL) -> Swift.Result<(Data, HTTPURLResponse), Error> {
+private func makeSuccessResponse(withStatusCode code: Int, data: Data, url: URL) -> Swift.Result<(Data, HTTPURLResponse), Error> {
     let response = HTTPURLResponse(
         url: url,
         statusCode: code,
