@@ -53,6 +53,21 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
+    func test_load_deliversErrorOnClientCompletesError() async throws {
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        client.result = .failure(makeNSError())
+        var didFailWithError: Error?
+        
+        do {
+            try await sut.load(from: url)
+        } catch {
+            didFailWithError = error
+        }
+        
+        XCTAssertNotNil(didFailWithError)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = anyURL()) -> (sut: RemoteQuoteLoader, httpClient: HttpClientSpy) {
