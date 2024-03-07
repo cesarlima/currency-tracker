@@ -15,12 +15,20 @@ protocol HttpClient {
 final class RemoteQuoteLoader {
     private let httpClient: HttpClient
     
+    enum LoadError: Error {
+        case invalidResponse
+    }
+    
     init(httpClient: HttpClient) {
         self.httpClient = httpClient
     }
     
     func load(from url: URL) async throws {
-        _ = try await httpClient.get(from: url)
+        let (_, httpResponse) = try await httpClient.get(from: url)
+        
+        if httpResponse.statusCode != 200 {
+            throw LoadError.invalidResponse
+        }
     }
 }
 
@@ -66,6 +74,30 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         }
         
         XCTAssertNotNil(didFailWithError)
+    }
+    
+    func test_load_deliversErrorOnNon200HTTPResponse() async throws {
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        
+        let httpCodes = [199, 201, 300, 400, 500]
+        
+        httpCodes.enumerated().forEach { index, statusCode in
+            
+            client.result = makeSuccessResponse(withStatusCode: statusCode, data: Data(), url: url)
+            
+            Task {
+                var didFailWithError: Error?
+                
+                do {
+                    try await sut.load(from: url)
+                } catch {
+                    didFailWithError = error
+                }
+                
+                XCTAssertEqual(didFailWithError as! RemoteQuoteLoader.LoadError, .invalidResponse)
+            }
+        }
     }
     
     // MARK: - Helpers
