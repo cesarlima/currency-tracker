@@ -27,16 +27,15 @@ final class RemoteQuoteLoader {
 final class CurrencyQuoteLoaderTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() async throws {
-        let client = HttpClientSpy(result: .failure(makeNSError()))
-        let sut = RemoteQuoteLoader(httpClient: client)
+        let (_, client) = makeSUT()
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_load_requestsDataFromURL() async throws {
         let url = anyURL()
-        let client = HttpClientSpy(result: makeSuccessResponse(withStatusCode: 200, data: Data(), url: url))
-        let sut = RemoteQuoteLoader(httpClient: client)
+        let (sut, client) = makeSUT(url: url)
+        client.result = makeSuccessResponse(withStatusCode: 200, data: Data(), url: url)
         
         try await sut.load(from: url)
         
@@ -45,26 +44,37 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     
     func test_load_requestsDataFromURLTwice() async throws {
         let url = anyURL()
-        let client = HttpClientSpy(result: makeSuccessResponse(withStatusCode: 200, data: Data(), url: url))
-        let sut = RemoteQuoteLoader(httpClient: client)
-        
+        let (sut, client) = makeSUT(url: url)
+        client.result = makeSuccessResponse(withStatusCode: 200, data: Data(), url: url)
+     
         try await sut.load(from: url)
         try await sut.load(from: url)
         
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(url: URL = anyURL()) -> (sut: RemoteQuoteLoader, httpClient: HttpClientSpy) {
+        let client = HttpClientSpy()
+        let sut = RemoteQuoteLoader(httpClient: client)
+        
+        return (sut, client)
+    }
 }
 
 final class HttpClientSpy: HttpClient {
-    private(set) var requestedURLs: [URL] = []
-    let result: Swift.Result<(Data, HTTPURLResponse), Error>
+    typealias LoadResponse = Swift.Result<(Data, HTTPURLResponse), Error>
     
-    init(result: Swift.Result<(Data, HTTPURLResponse), Error>) {
-        self.result = result
-    }
+    private(set) var requestedURLs: [URL] = []
+    var result: LoadResponse?
     
     func get(from url: URL) async throws -> (Data, HTTPURLResponse) {
         requestedURLs.append(url)
+        
+        guard let result = result else {
+            throw NSError(domain: "Result is nil", code: 0)
+        }
         
         switch result {
         case .success(let response):
