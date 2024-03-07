@@ -13,6 +13,7 @@
 		8E9F3BDB2B99E77300B1EC8A /* CurrencyQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */; };
 		8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */; };
 		8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */; };
+		8E9F3BE62B9A222F00B1EC8A /* CurrencyMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE52B9A222F00B1EC8A /* CurrencyMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteLoader.swift; sourceTree = "<group>"; };
 		8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCurrencyQuoteLoader.swift; sourceTree = "<group>"; };
+		8E9F3BE52B9A222F00B1EC8A /* CurrencyMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */,
 				8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */,
+				8E9F3BE52B9A222F00B1EC8A /* CurrencyMapper.swift */,
 			);
 			path = "Currencies Remote";
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				8E9F3BDB2B99E77300B1EC8A /* CurrencyQuoteLoader.swift in Sources */,
 				8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */,
+				8E9F3BE62B9A222F00B1EC8A /* CurrencyMapper.swift in Sources */,
 				8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */,
 				8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */,
 			);
