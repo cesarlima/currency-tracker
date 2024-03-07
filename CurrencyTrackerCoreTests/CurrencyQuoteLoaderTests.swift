@@ -24,14 +24,16 @@ final class RemoteQuoteLoader {
         self.httpClient = httpClient
     }
     
-    func load(from url: URL) async throws {
+    func load(from url: URL) async throws -> [Currency] {
         let (data, httpResponse) = try await httpClient.get(from: url)
         
         if httpResponse.statusCode != 200 {
             throw LoadError.invalidResponse
         }
         
-        _ = try map(data, from: httpResponse)
+        let result = try map(data, from: httpResponse)
+        
+        return result
     }
     
     private func map(_ data: Data, from response: HTTPURLResponse) throws -> [Currency] {
@@ -82,7 +84,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
         
-        try await sut.load(from: url)
+        _ = try await sut.load(from: url)
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -92,8 +94,8 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         let (sut, client) = makeSUT(url: url)
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
      
-        try await sut.load(from: url)
-        try await sut.load(from: url)
+        _ = try await sut.load(from: url)
+        _ = try await sut.load(from: url)
         
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
@@ -105,7 +107,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         var didFailWithError: Error?
         
         do {
-            try await sut.load(from: url)
+            _ = try await sut.load(from: url)
         } catch {
             didFailWithError = error
         }
@@ -127,7 +129,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
                 var didFailWithError: Error?
                 
                 do {
-                    try await sut.load(from: url)
+                    _ = try await sut.load(from: url)
                 } catch {
                     didFailWithError = error
                 }
@@ -144,12 +146,25 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         var didFailWithError: Error?
         
         do {
-            try await sut.load(from: url)
+            _ = try await sut.load(from: url)
         } catch {
             didFailWithError = error
         }
         
         XCTAssertEqual(didFailWithError as! RemoteQuoteLoader.LoadError, .invalidData)
+    }
+    
+    func test_load_deliversNoCurrenciesOn200HTTPResponseWithEmptyJSON() async throws {
+        let url = anyURL()
+        let (sut, client) = makeSUT(url: url)
+        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
+        
+        do {
+            let currencies = try await sut.load(from: url)
+            XCTAssertEqual(currencies, [])
+        } catch {
+            XCTFail("The load should completes with success.")
+        }
     }
     
     // MARK: - Helpers
