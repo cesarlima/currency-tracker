@@ -64,6 +64,7 @@
 				8E9F3BC12B99E4BF00B1EC8A /* CurrencyTrackerCore */,
 				8E9F3BCB2B99E4BF00B1EC8A /* CurrencyTrackerCoreTests */,
 				8E9F3BC02B99E4BF00B1EC8A /* Products */,
+				8E9F3C1F2B9A6BC900B1EC8A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +112,13 @@
 				8E9F3BE92B9A4BB000B1EC8A /* URLSessionHTTPClient.swift */,
 			);
 			path = "Currencies Remote";
+			sourceTree = "<group>";
+		};
+		8E9F3C1F2B9A6BC900B1EC8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +404,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.cesarlima.CurrencyTrackerCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -429,6 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.cesarlima.CurrencyTrackerCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -445,6 +455,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.cesarlima.CurrencyTrackerCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -461,6 +472,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.cesarlima.CurrencyTrackerCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
