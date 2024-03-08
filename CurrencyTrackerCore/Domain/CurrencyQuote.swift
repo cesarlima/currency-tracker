@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Currency: Equatable, Identifiable {
+public struct CurrencyQuote: Equatable, Identifiable {
     public var id: String {
         return code
     }

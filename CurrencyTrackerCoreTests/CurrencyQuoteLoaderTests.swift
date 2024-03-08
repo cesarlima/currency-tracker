@@ -129,7 +129,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private func makeCurrencies() -> (data: Data, currencies: [Currency]) {
+    private func makeCurrencies() -> (data: Data, currencies: [CurrencyQuote]) {
         let data = """
         {
            "USDBRL":{
@@ -179,7 +179,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
             statusCode: 200,
             httpVersion: nil,
             headerFields: nil)!
-        let currencies = try! CurrencyMapper.map(data, from: response)
+        let currencies = try! CurrencyQuoteMapper.map(data, from: response)
         return (data, currencies)
     }
 }

@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		8E9F3BC82B99E4BF00B1EC8A /* CurrencyTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */; };
 		8E9F3BCD2B99E4BF00B1EC8A /* CurrencyQuoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BCC2B99E4BF00B1EC8A /* CurrencyQuoteLoaderTests.swift */; };
-		8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BD82B99E57C00B1EC8A /* Currency.swift */; };
+		8E9F3BD92B99E57C00B1EC8A /* CurrencyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BD82B99E57C00B1EC8A /* CurrencyQuote.swift */; };
 		8E9F3BDB2B99E77300B1EC8A /* CurrencyQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */; };
 		8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */; };
 		8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */; };
-		8E9F3BE62B9A222F00B1EC8A /* CurrencyMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE52B9A222F00B1EC8A /* CurrencyMapper.swift */; };
+		8E9F3BE62B9A222F00B1EC8A /* CurrencyQuoteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE52B9A222F00B1EC8A /* CurrencyQuoteMapper.swift */; };
 		8E9F3BEA2B9A4BB000B1EC8A /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE92B9A4BB000B1EC8A /* URLSessionHTTPClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,11 +31,11 @@
 		8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CurrencyTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9F3BC72B99E4BF00B1EC8A /* CurrencyTrackerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyTrackerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9F3BCC2B99E4BF00B1EC8A /* CurrencyQuoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteLoaderTests.swift; sourceTree = "<group>"; };
-		8E9F3BD82B99E57C00B1EC8A /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		8E9F3BD82B99E57C00B1EC8A /* CurrencyQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuote.swift; sourceTree = "<group>"; };
 		8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteLoader.swift; sourceTree = "<group>"; };
 		8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCurrencyQuoteLoader.swift; sourceTree = "<group>"; };
-		8E9F3BE52B9A222F00B1EC8A /* CurrencyMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyMapper.swift; sourceTree = "<group>"; };
+		8E9F3BE52B9A222F00B1EC8A /* CurrencyQuoteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteMapper.swift; sourceTree = "<group>"; };
 		8E9F3BE92B9A4BB000B1EC8A /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,7 +97,7 @@
 		8E9F3BD72B99E54700B1EC8A /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				8E9F3BD82B99E57C00B1EC8A /* Currency.swift */,
+				8E9F3BD82B99E57C00B1EC8A /* CurrencyQuote.swift */,
 				8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */,
 			);
 			path = Domain;
@@ -108,7 +108,7 @@
 			children = (
 				8E9F3BDF2B9A1B5B00B1EC8A /* HttpClient.swift */,
 				8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */,
-				8E9F3BE52B9A222F00B1EC8A /* CurrencyMapper.swift */,
+				8E9F3BE52B9A222F00B1EC8A /* CurrencyQuoteMapper.swift */,
 				8E9F3BE92B9A4BB000B1EC8A /* URLSessionHTTPClient.swift */,
 			);
 			path = "Currencies Remote";
@@ -232,8 +232,8 @@
 			files = (
 				8E9F3BDB2B99E77300B1EC8A /* CurrencyQuoteLoader.swift in Sources */,
 				8E9F3BEA2B9A4BB000B1EC8A /* URLSessionHTTPClient.swift in Sources */,
-				8E9F3BD92B99E57C00B1EC8A /* Currency.swift in Sources */,
-				8E9F3BE62B9A222F00B1EC8A /* CurrencyMapper.swift in Sources */,
+				8E9F3BD92B99E57C00B1EC8A /* CurrencyQuote.swift in Sources */,
+				8E9F3BE62B9A222F00B1EC8A /* CurrencyQuoteMapper.swift in Sources */,
 				8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */,
 				8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */,
 			);

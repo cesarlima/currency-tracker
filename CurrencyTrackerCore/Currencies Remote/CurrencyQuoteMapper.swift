@@ -7,15 +7,15 @@
 
 import Foundation
 
-enum CurrencyMapper {
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> [Currency] {
+enum CurrencyQuoteMapper {
+    static func map(_ data: Data, from response: HTTPURLResponse) throws -> [CurrencyQuote] {
         guard response.statusCode == 200 else {
             throw RemoteCurrencyQuoteLoader.LoadError.invalidResponse
         }
         
         do {
             let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as! [String: [String: Any]]
-            let currencies = jsonDict.compactMap { Currency(json: $0.value) }.sorted { $0.code < $1.code }
+            let currencies = jsonDict.compactMap { CurrencyQuote(json: $0.value) }.sorted { $0.code < $1.code }
             return currencies
         } catch {
             throw RemoteCurrencyQuoteLoader.LoadError.invalidData
@@ -23,7 +23,7 @@ enum CurrencyMapper {
     }
 }
 
-extension Currency {
+extension CurrencyQuote {
     init?(json: [String: Any]) {
         guard let name = json["name"] as? String,
               let code = json["code"] as? String,

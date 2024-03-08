@@ -19,10 +19,10 @@ public final class RemoteCurrencyQuoteLoader: CurrencyQuoteLoader {
         self.httpClient = httpClient
     }
     
-    public func load(from url: URL) async throws -> [Currency] {
+    public func load(from url: URL) async throws -> [CurrencyQuote] {
         let (data, httpResponse) = try await httpClient.get(from: url)
         
-        let result = try CurrencyMapper.map(data, from: httpResponse)
+        let result = try CurrencyQuoteMapper.map(data, from: httpResponse)
         
         return result
     }

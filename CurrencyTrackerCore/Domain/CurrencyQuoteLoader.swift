@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol CurrencyQuoteLoader {
-    func load(from url: URL) async throws -> [Currency]
+    func load(from url: URL) async throws -> [CurrencyQuote]
 }
