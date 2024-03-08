@@ -15,6 +15,7 @@
 		8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */; };
 		8E9F3BE62B9A222F00B1EC8A /* CurrencyQuoteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE52B9A222F00B1EC8A /* CurrencyQuoteMapper.swift */; };
 		8E9F3BEA2B9A4BB000B1EC8A /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE92B9A4BB000B1EC8A /* URLSessionHTTPClient.swift */; };
+		8E9F3C832B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3C822B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		8E9F3BE32B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCurrencyQuoteLoader.swift; sourceTree = "<group>"; };
 		8E9F3BE52B9A222F00B1EC8A /* CurrencyQuoteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteMapper.swift; sourceTree = "<group>"; };
 		8E9F3BE92B9A4BB000B1EC8A /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		8E9F3C822B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheCurrencyQuoteTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				8E9F3BCC2B99E4BF00B1EC8A /* CurrencyQuoteLoaderTests.swift */,
+				8E9F3C822B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift */,
 			);
 			path = CurrencyTrackerCoreTests;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E9F3C832B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift in Sources */,
 				8E9F3BCD2B99E4BF00B1EC8A /* CurrencyQuoteLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
