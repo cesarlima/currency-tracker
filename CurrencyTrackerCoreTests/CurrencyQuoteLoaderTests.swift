@@ -18,33 +18,33 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     
     func test_load_requestsDataFromURL() async throws {
         let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
         
-        _ = try await sut.load()
+        _ = try await sut.load(from: url)
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func test_load_requestsDataFromURLTwice() async throws {
         let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
      
-        _ = try await sut.load()
-        _ = try await sut.load()
+        _ = try await sut.load(from: url)
+        _ = try await sut.load(from: url)
         
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     func test_load_deliversErrorOnClientCompletesError() async throws {
         let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         client.result = .failure(makeNSError())
         var didFailWithError: Error?
         
         do {
-            _ = try await sut.load()
+            _ = try await sut.load(from: url)
         } catch {
             didFailWithError = error
         }
@@ -54,7 +54,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOnNon200HTTPResponse() async throws {
         let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         
         let httpCodes = [199, 201, 300, 400, 500]
         
@@ -66,7 +66,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
                 var didFailWithError: Error?
                 
                 do {
-                    _ = try await sut.load()
+                    _ = try await sut.load(from: url)
                 } catch {
                     didFailWithError = error
                 }
@@ -78,12 +78,12 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() async throws {
         let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("invalid json".utf8), url: url)
         var didFailWithError: Error?
         
         do {
-            _ = try await sut.load()
+            _ = try await sut.load(from: url)
         } catch {
             didFailWithError = error
         }
@@ -93,11 +93,11 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     
     func test_load_deliversNoCurrenciesOn200HTTPResponseWithEmptyJSON() async throws {
         let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
         
         do {
-            let currencies = try await sut.load()
+            let currencies = try await sut.load(from: url)
             XCTAssertEqual(currencies, [])
         } catch {
             XCTFail("The load should completes with success.")
@@ -108,11 +108,11 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
        let (data, expectedCurrencies) = makeCurrencies()
         
         let url = anyURL()
-        let (sut, client) = makeSUT(url: url)
+        let (sut, client) = makeSUT()
         client.result = makeSuccessResponse(withStatusCode: 200, data: data, url: url)
         
         do {
-            let currencies = try await sut.load()
+            let currencies = try await sut.load(from: url)
             XCTAssertEqual(currencies, expectedCurrencies)
           
         } catch {
@@ -122,9 +122,9 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(url: URL = anyURL()) -> (sut: RemoteCurrencyQuoteLoader, httpClient: HttpClientSpy) {
+    private func makeSUT() -> (sut: RemoteCurrencyQuoteLoader, httpClient: HttpClientSpy) {
         let client = HttpClientSpy()
-        let sut = RemoteCurrencyQuoteLoader(httpClient: client, url: url)
+        let sut = RemoteCurrencyQuoteLoader(httpClient: client)
         
         return (sut, client)
     }
