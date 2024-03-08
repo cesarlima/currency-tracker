@@ -7,10 +7,21 @@
 
 import Foundation
 
-struct Currency: Equatable {
-    let name: String
-    let code: String
-    let codeIn: String
-    let quote: Double
-    let quoteDate: Date
+public struct Currency: Equatable, Identifiable {
+    public var id: String {
+        return code
+    }
+    public let name: String
+    public let code: String
+    public let codeIn: String
+    public let quote: Double
+    public let quoteDate: Date
+    
+    public init(name: String, code: String, codeIn: String, quote: Double, quoteDate: Date) {
+        self.name = name
+        self.code = code
+        self.codeIn = codeIn
+        self.quote = quote
+        self.quoteDate = quoteDate
+    }
 }

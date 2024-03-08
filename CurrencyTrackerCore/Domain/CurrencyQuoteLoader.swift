@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol CurrencyQuoteLoader {
+public protocol CurrencyQuoteLoader {
     func load() async throws -> [Currency]
 }
