@@ -73,31 +73,19 @@ final class CacheCurrencyQuoteTests: XCTestCase {
     func test_save_failsOnDeletionError() async throws {
         let (sut, store) = makeSUT()
         let deletionError = makeNSError()
-        store.completeDeletion(with: deletionError)
-        var expectedError: NSError?
         
-        do {
-            try await sut.save(quotes: makeCurrencies().models)
-        } catch {
-            expectedError = error as NSError
+        await expect(sut, toCompleteWithError: deletionError) {
+            store.completeDeletion(with: deletionError)
         }
-        
-        XCTAssertEqual(deletionError, expectedError)
     }
     
     func test_save_failsOnInsertionError() async throws {
         let (sut, store) = makeSUT()
         let insertionError = makeNSError()
-        store.completeInsertion(with: insertionError)
-        var expectedError: NSError?
         
-        do {
-            try await sut.save(quotes: makeCurrencies().models)
-        } catch {
-            expectedError = error as NSError
+        await expect(sut, toCompleteWithError: insertionError) {
+            store.completeInsertion(with: insertionError)
         }
-        
-        XCTAssertEqual(insertionError, expectedError)
     }
     
     // MARK: - Helpers
@@ -107,6 +95,23 @@ final class CacheCurrencyQuoteTests: XCTestCase {
         let sut = LocalCurrencyQuoteHandler(store: store)
         
         return (sut, store)
+    }
+    
+    private func expect(_ sut: LocalCurrencyQuoteHandler,
+                        toCompleteWithError expectedError: NSError,
+                        when storeAction: () -> Void,
+                        file: StaticString = #filePath,
+                        line: UInt = #line) async {
+        storeAction()
+        var receivedError: NSError?
+        
+        do {
+            try await sut.save(quotes: makeCurrencies().models)
+        } catch {
+            receivedError = error as NSError
+        }
+        
+        XCTAssertEqual(expectedError, receivedError, file: file, line: line)
     }
     
     private func makeCurrencies() -> (data: Data, models: [CurrencyQuote]) {
