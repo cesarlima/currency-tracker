@@ -11,12 +11,20 @@ import XCTest
 final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
 
     func test_retrieve_deliversNilOnEmptyCache() async throws {
-        let storeBundle = Bundle(for: CoreDataCurrencyQuoteStore.self)
-        let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try! CoreDataCurrencyQuoteStore(storeURL: storeURL, bundle: storeBundle)
+        let sut = makeSUT()
         
         let result = try await sut.retrieve(codeIn: "USD")
         
         XCTAssertEqual(result, nil)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT() -> CoreDataCurrencyQuoteStore {
+        let storeBundle = Bundle(for: CoreDataCurrencyQuoteStore.self)
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try! CoreDataCurrencyQuoteStore(storeURL: storeURL, bundle: storeBundle)
+        
+        return sut
     }
 }
