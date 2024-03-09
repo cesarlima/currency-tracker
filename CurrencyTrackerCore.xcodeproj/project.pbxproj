@@ -24,6 +24,8 @@
 		8E9F3C942B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3C922B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld */; };
 		8E9F3CA92B9CBA5F00B1EC8A /* ManagedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CA52B9CBA5F00B1EC8A /* ManagedCurrency.swift */; };
 		8E9F3CAB2B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CA72B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift */; };
+		8E9F3CB02B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CAF2B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift */; };
+		8E9F3CB22B9CD7A400B1EC8A /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CB12B9CD7A400B1EC8A /* CoreDataHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		8E9F3C932B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CurrencyQuotes.xcdatamodel; sourceTree = "<group>"; };
 		8E9F3CA52B9CBA5F00B1EC8A /* ManagedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedCurrency.swift; sourceTree = "<group>"; };
 		8E9F3CA72B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedCurrencyQuote.swift; sourceTree = "<group>"; };
+		8E9F3CAF2B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCurrencyQuoteStore.swift; sourceTree = "<group>"; };
+		8E9F3CB12B9CD7A400B1EC8A /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,8 @@
 			children = (
 				8E9F3CA52B9CBA5F00B1EC8A /* ManagedCurrency.swift */,
 				8E9F3CA72B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift */,
+				8E9F3CAF2B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift */,
+				8E9F3CB12B9CD7A400B1EC8A /* CoreDataHelpers.swift */,
 				8E9F3C922B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -294,9 +300,11 @@
 				8E9F3C892B9BE95F00B1EC8A /* LocalCurrencyQuoteHandler.swift in Sources */,
 				8E9F3BEA2B9A4BB000B1EC8A /* URLSessionHTTPClient.swift in Sources */,
 				8E9F3BD92B99E57C00B1EC8A /* CurrencyQuote.swift in Sources */,
+				8E9F3CB22B9CD7A400B1EC8A /* CoreDataHelpers.swift in Sources */,
 				8E9F3CAB2B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift in Sources */,
 				8E9F3BE62B9A222F00B1EC8A /* CurrencyQuoteMapper.swift in Sources */,
 				8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */,
+				8E9F3CB02B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift in Sources */,
 				8E9F3C942B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld in Sources */,
 				8E9F3CA92B9CBA5F00B1EC8A /* ManagedCurrency.swift in Sources */,
 				8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */,
