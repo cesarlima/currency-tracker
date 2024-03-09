@@ -15,13 +15,24 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         
         let result = try await sut.retrieve(codeIn: "USD")
         
-        XCTAssertEqual(result, nil)
+        XCTAssertEqual(result, [])
     }
     
     func test_insert_deliversNoErrorOnEmptyCache() async {
         let sut = makeSUT()
         
         do {
+            try await sut.save(quotes: makeCurrencies().models)
+        } catch {
+            XCTFail("Expected no error but got \(error) instead.")
+        }
+    }
+    
+    func test_insert_deliversNoErrorOnNonEmptyCache() async {
+        let sut = makeSUT()
+        
+        do {
+            try await sut.save(quotes: makeCurrencies().models)
             try await sut.save(quotes: makeCurrencies().models)
         } catch {
             XCTFail("Expected no error but got \(error) instead.")

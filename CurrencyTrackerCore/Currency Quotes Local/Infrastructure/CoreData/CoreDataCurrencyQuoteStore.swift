@@ -18,7 +18,15 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
     }
     
     func save(quotes: [CurrencyTrackerCore.CurrencyQuote]) async throws {
+        let context = context
         
+        try await context.perform({
+            quotes.forEach { currencyQuote in
+                ManagedCurrencyQuote.createManagedCurrencyQuote(from: currencyQuote,
+                                                                in: context)
+            }
+            try context.save()
+        })
     }
     
     func delete(with codeIn: String) async throws {
@@ -26,6 +34,12 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
     }
     
     func retrieve(codeIn: String) async throws -> [CurrencyTrackerCore.CurrencyQuote]? {
-        nil
+        let context = context
+        
+        let managedQuotes = try await context.perform({
+            try ManagedCurrencyQuote.findByCodeIn(codeIn, in: context)
+        }) ?? []
+        
+        return managedQuotes.map { $0.toLocal() }
     }
 }
