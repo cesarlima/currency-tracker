@@ -57,6 +57,15 @@ final class LoadCurrencyQuotesFromCacheTests: XCTestCase {
         XCTAssertEqual(quotes, models)
     }
     
+    func test_load_hasNoSideEffectsOnRetrievalSuccessful() async throws {
+        let (sut, store) = makeSUT()
+        store.completeRetrieval(with: makeCurrencies().models)
+
+         _ = try! await sut.load(codeIn: "USD")
+
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: LocalCurrencyQuoteHandler, store: CurrencyQuoteStoreStub) {
