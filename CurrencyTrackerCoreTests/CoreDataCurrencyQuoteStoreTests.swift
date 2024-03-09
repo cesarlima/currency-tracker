@@ -50,6 +50,17 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         }
     }
     
+    func test_delete_deliversNoErrorOnNonEmptyCache() async {
+        let sut = makeSUT()
+        
+        do {
+            let currencyCodeIn = "USD"
+            try await sut.delete(with: currencyCodeIn)
+        } catch {
+            XCTFail("Expected no error but got \(error) instead.")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> CoreDataCurrencyQuoteStore {
