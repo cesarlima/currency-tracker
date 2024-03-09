@@ -48,6 +48,10 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
         retrievalResult = .failure(error)
     }
     
+    func completeRetrieval(with quotes: [CurrencyQuote]) {
+        retrievalResult = .success(quotes)
+    }
+    
     func completeRetrievalWithEmptyCache() {
         retrievalResult = .success(.none)
     }

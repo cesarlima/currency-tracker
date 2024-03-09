@@ -47,6 +47,16 @@ final class LoadCurrencyQuotesFromCacheTests: XCTestCase {
         XCTAssertEqual(quotes, [])
     }
     
+    func test_load_deliversCurrencyQuotes() async throws {
+        let (sut, store) = makeSUT()
+        let models = makeCurrencies().models
+        store.completeRetrieval(with: models)
+
+        let quotes = try! await sut.load(codeIn: "BRL")
+
+        XCTAssertEqual(quotes, models)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: LocalCurrencyQuoteHandler, store: CurrencyQuoteStoreStub) {
