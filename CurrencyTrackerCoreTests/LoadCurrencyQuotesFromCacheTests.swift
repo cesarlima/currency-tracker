@@ -75,6 +75,15 @@ final class LoadCurrencyQuotesFromCacheTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
+    func test_load_hasNoSideEffectsOnRetrievalCompletesEmpty() async throws {
+        let (sut, store) = makeSUT()
+        store.completeRetrievalWithEmptyCache()
+
+         _ = try! await sut.load(codeIn: "BTC")
+
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: LocalCurrencyQuoteHandler, store: CurrencyQuoteStoreStub) {
