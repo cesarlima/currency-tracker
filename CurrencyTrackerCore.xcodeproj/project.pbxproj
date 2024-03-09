@@ -26,6 +26,7 @@
 		8E9F3CAB2B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CA72B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift */; };
 		8E9F3CB02B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CAF2B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift */; };
 		8E9F3CB22B9CD7A400B1EC8A /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CB12B9CD7A400B1EC8A /* CoreDataHelpers.swift */; };
+		8E9F3CB42B9CDA2700B1EC8A /* CoreDataCurrencyQuoteStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CB32B9CDA2700B1EC8A /* CoreDataCurrencyQuoteStoreTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		8E9F3CA72B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedCurrencyQuote.swift; sourceTree = "<group>"; };
 		8E9F3CAF2B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCurrencyQuoteStore.swift; sourceTree = "<group>"; };
 		8E9F3CB12B9CD7A400B1EC8A /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
+		8E9F3CB32B9CDA2700B1EC8A /* CoreDataCurrencyQuoteStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCurrencyQuoteStoreTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				8E9F3BCC2B99E4BF00B1EC8A /* CurrencyQuoteLoaderTests.swift */,
 				8E9F3C822B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift */,
 				8E9F3C8C2B9BF1D400B1EC8A /* LoadCurrencyQuotesFromCacheTests.swift */,
+				8E9F3CB32B9CDA2700B1EC8A /* CoreDataCurrencyQuoteStoreTests.swift */,
 			);
 			path = CurrencyTrackerCoreTests;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E9F3CB42B9CDA2700B1EC8A /* CoreDataCurrencyQuoteStoreTests.swift in Sources */,
 				8E9F3C8D2B9BF1D400B1EC8A /* LoadCurrencyQuotesFromCacheTests.swift in Sources */,
 				8E9F3C8F2B9BF47C00B1EC8A /* CurrencyQuoteStoreStub.swift in Sources */,
 				8E9F3C832B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift in Sources */,
