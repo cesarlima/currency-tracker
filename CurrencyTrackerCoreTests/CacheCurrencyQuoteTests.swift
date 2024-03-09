@@ -19,6 +19,7 @@ final class LocalCurrencyQuoteHandler {
         guard let codeIn = quotes.first?.codeIn else { return }
         
         try await store.delete(with: codeIn)
+        try await store.save(quotes: quotes)
     }
 }
 
@@ -29,6 +30,7 @@ final class CurrencyQuoteStore {
     }
     
     private var deletionResult: Result<Void, Error>?
+    private var insertionResult: Result<Void, Error>?
     
     private(set) var receivedMessages: [ReceivedMessage] = []
     
@@ -39,6 +41,14 @@ final class CurrencyQuoteStore {
     
     func completeDeletion(with error: Error) {
         deletionResult = .failure(error)
+    }
+    
+    func save(quotes: [CurrencyQuote]) async throws {
+        try insertionResult?.get()
+    }
+    
+    func completeInsertion(with error: Error) {
+        insertionResult = .failure(error)
     }
 }
 
@@ -73,6 +83,21 @@ final class CacheCurrencyQuoteTests: XCTestCase {
         }
         
         XCTAssertEqual(deletionError, expectedError)
+    }
+    
+    func test_save_failsOnInsertionError() async throws {
+        let (sut, store) = makeSUT()
+        let insertionError = makeNSError()
+        store.completeInsertion(with: insertionError)
+        var expectedError: NSError?
+        
+        do {
+            try await sut.save(quotes: makeCurrencies().models)
+        } catch {
+            expectedError = error as NSError
+        }
+        
+        XCTAssertEqual(insertionError, expectedError)
     }
     
     // MARK: - Helpers
