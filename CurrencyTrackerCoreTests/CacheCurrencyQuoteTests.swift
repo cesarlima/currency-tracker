@@ -45,15 +45,13 @@ final class CurrencyQuoteStore {
 final class CacheCurrencyQuoteTests: XCTestCase {
 
     func test_init_doesNotMessageStoreUponCreation() async throws {
-        let store = CurrencyQuoteStore()
-        let sut = LocalCurrencyQuoteHandler(store: store)
+        let (_, store) = makeSUT()
         
         XCTAssertEqual(store.receivedMessages, [])
     }
     
     func test_save_doesNotRequestCacheInsertionOnDeletionError() async throws {
-        let store = CurrencyQuoteStore()
-        let sut = LocalCurrencyQuoteHandler(store: store)
+        let (sut, store) = makeSUT()
         let models = makeCurrencies().models
         store.completeDeletion(with: makeNSError())
         
@@ -63,6 +61,13 @@ final class CacheCurrencyQuoteTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: LocalCurrencyQuoteHandler, store: CurrencyQuoteStore) {
+        let store = CurrencyQuoteStore()
+        let sut = LocalCurrencyQuoteHandler(store: store)
+        
+        return (sut, store)
+    }
     
     private func makeCurrencies() -> (data: Data, models: [CurrencyQuote]) {
         let data = """
