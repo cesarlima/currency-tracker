@@ -17,7 +17,7 @@ final class LocalCurrencyQuoteHandler {
     func save(quotes: [CurrencyQuote]) async throws {
         guard let codeIn = quotes.first?.codeIn else { return }
         
-        try await store.delete(with: codeIn)
+        try await store.deleteWhereCodeInEquals(codeIn)
         try await store.save(quotes: quotes)
     }
     

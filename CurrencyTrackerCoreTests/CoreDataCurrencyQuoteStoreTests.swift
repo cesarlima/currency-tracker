@@ -55,7 +55,7 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         
         do {
             let currencyCodeIn = "USD"
-            try await sut.delete(with: currencyCodeIn)
+            try await sut.deleteWhereCodeInEquals(currencyCodeIn)
         } catch {
             XCTFail("Expected no error but got \(error) instead.")
         }

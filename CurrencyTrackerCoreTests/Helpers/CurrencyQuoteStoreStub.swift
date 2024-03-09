@@ -21,7 +21,7 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
     
     private(set) var receivedMessages: [ReceivedMessage] = []
     
-    func delete(with codeIn: String) async throws {
+    func deleteWhereCodeInEquals(_ codeIn: String) async throws {
         receivedMessages.append(.deleteCachedCurrencyQuote(codeIn))
         try deletionResult?.get()
     }

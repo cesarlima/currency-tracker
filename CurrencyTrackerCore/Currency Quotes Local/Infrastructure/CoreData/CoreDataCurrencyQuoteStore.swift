@@ -29,7 +29,7 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
         })
     }
     
-    func delete(with codeIn: String) async throws {
+    func deleteWhereCodeInEquals(_ codeIn: String) async throws {
         
     }
     
