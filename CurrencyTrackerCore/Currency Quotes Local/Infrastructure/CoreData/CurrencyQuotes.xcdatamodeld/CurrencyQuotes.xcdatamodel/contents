@@ -7,8 +7,14 @@
     <entity name="ManagedCurrencyQuote" representedClassName="ManagedCurrencyQuote" syncable="YES">
         <attribute name="code" attributeType="String"/>
         <attribute name="codeIn" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="quote" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="quoteDate" attributeType="Date" usesScalarValueType="NO"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
 </model>

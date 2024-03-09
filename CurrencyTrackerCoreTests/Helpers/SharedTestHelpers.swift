@@ -16,26 +16,26 @@ func makeNSError() -> NSError {
     NSError(domain: "any erro", code: 0)
 }
 
-func makeCurrencies() -> (data: Data, models: [CurrencyQuote]) {
+func makeCurrencies(codeIn: String = "BRL") -> (data: Data, models: [CurrencyQuote]) {
     let data = """
     {
        "USDBRL":{
           "code":"USD",
-          "codein":"BRL",
+          "codein":"\(codeIn)",
           "name":"Dólar Americano/Real Brasileiro",
           "bid":"4.9446",
           "create_date":"2024-03-06 21:57:40"
        },
        "EURBRL":{
           "code":"EUR",
-          "codein":"BRL",
+          "codein":"\(codeIn)",
           "name":"Euro/Real Brasileiro",
           "bid":"5.3844",
           "create_date":"2024-03-06 21:53:29"
        },
        "BTCBRL":{
           "code":"BTC",
-          "codein":"BRL",
+          "codein":"\(codeIn)",
           "name":"Bitcoin/Real Brasileiro",
           "bid":"330376",
           "create_date":"2024-03-06 21:58:07"

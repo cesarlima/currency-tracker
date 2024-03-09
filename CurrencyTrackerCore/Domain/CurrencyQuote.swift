@@ -9,7 +9,7 @@ import Foundation
 
 public struct CurrencyQuote: Equatable, Identifiable {
     public var id: String {
-        return code
+        return "\(code)\(codeIn)"
     }
     public let name: String
     public let code: String

@@ -32,10 +32,21 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         let sut = makeSUT()
         
         do {
-            try await sut.save(quotes: makeCurrencies().models)
-            try await sut.save(quotes: makeCurrencies().models)
+            try await sut.save(quotes: makeCurrencies(codeIn: "EUR").models)
+            try await sut.save(quotes: makeCurrencies(codeIn: "USD").models)
         } catch {
             XCTFail("Expected no error but got \(error) instead.")
+        }
+    }
+    
+    func test_insert_deliversErrorOnInsertDuplicatedCombinationOfCodeAndCodeIn() async {
+        let sut = makeSUT()
+        
+        do {
+            try await sut.save(quotes: makeCurrencies(codeIn: "BRL").models)
+            try await sut.save(quotes: makeCurrencies(codeIn: "BRL").models)
+        } catch {
+            XCTAssertNotNil(error, "Expected an error when attempting to insert a duplicate combination of code and codeIn values, as they form the unique identifier of a currency quote.")
         }
     }
     

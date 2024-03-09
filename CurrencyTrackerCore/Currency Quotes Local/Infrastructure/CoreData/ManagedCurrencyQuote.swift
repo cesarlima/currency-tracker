@@ -11,6 +11,7 @@ import CoreData
 
 @objc(ManagedCurrencyQuote)
 public class ManagedCurrencyQuote: NSManagedObject {
+    @NSManaged public var id: String
     @NSManaged public var quoteDate: Date
     @NSManaged public var quote: Double
     @NSManaged public var codeIn: String
@@ -20,6 +21,7 @@ public class ManagedCurrencyQuote: NSManagedObject {
     static func createManagedCurrencyQuote(from localQuote: CurrencyQuote,
                                            in context: NSManagedObjectContext) {
         let managedQuote = ManagedCurrencyQuote(context: context)
+        managedQuote.id = localQuote.id
         managedQuote.code = localQuote.code
         managedQuote.codeIn = localQuote.codeIn
         managedQuote.name = localQuote.name
