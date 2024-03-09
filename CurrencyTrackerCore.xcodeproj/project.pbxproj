@@ -21,6 +21,9 @@
 		8E9F3C8B2B9BE97E00B1EC8A /* CurrencyQuoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3C8A2B9BE97E00B1EC8A /* CurrencyQuoteStore.swift */; };
 		8E9F3C8D2B9BF1D400B1EC8A /* LoadCurrencyQuotesFromCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3C8C2B9BF1D400B1EC8A /* LoadCurrencyQuotesFromCacheTests.swift */; };
 		8E9F3C8F2B9BF47C00B1EC8A /* CurrencyQuoteStoreStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3C8E2B9BF47C00B1EC8A /* CurrencyQuoteStoreStub.swift */; };
+		8E9F3C942B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3C922B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld */; };
+		8E9F3CA92B9CBA5F00B1EC8A /* ManagedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CA52B9CBA5F00B1EC8A /* ManagedCurrency.swift */; };
+		8E9F3CAB2B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CA72B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		8E9F3C8A2B9BE97E00B1EC8A /* CurrencyQuoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteStore.swift; sourceTree = "<group>"; };
 		8E9F3C8C2B9BF1D400B1EC8A /* LoadCurrencyQuotesFromCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadCurrencyQuotesFromCacheTests.swift; sourceTree = "<group>"; };
 		8E9F3C8E2B9BF47C00B1EC8A /* CurrencyQuoteStoreStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteStoreStub.swift; sourceTree = "<group>"; };
+		8E9F3C932B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CurrencyQuotes.xcdatamodel; sourceTree = "<group>"; };
+		8E9F3CA52B9CBA5F00B1EC8A /* ManagedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedCurrency.swift; sourceTree = "<group>"; };
+		8E9F3CA72B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedCurrencyQuote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,10 +155,29 @@
 		8E9F3C872B9BE93A00B1EC8A /* Currency Quotes Local */ = {
 			isa = PBXGroup;
 			children = (
+				8E9F3C902B9CAEED00B1EC8A /* Infrastructure */,
 				8E9F3C882B9BE95F00B1EC8A /* LocalCurrencyQuoteHandler.swift */,
 				8E9F3C8A2B9BE97E00B1EC8A /* CurrencyQuoteStore.swift */,
 			);
 			path = "Currency Quotes Local";
+			sourceTree = "<group>";
+		};
+		8E9F3C902B9CAEED00B1EC8A /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				8E9F3C912B9CAEFE00B1EC8A /* CoreData */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		8E9F3C912B9CAEFE00B1EC8A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8E9F3CA52B9CBA5F00B1EC8A /* ManagedCurrency.swift */,
+				8E9F3CA72B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift */,
+				8E9F3C922B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,8 +294,11 @@
 				8E9F3C892B9BE95F00B1EC8A /* LocalCurrencyQuoteHandler.swift in Sources */,
 				8E9F3BEA2B9A4BB000B1EC8A /* URLSessionHTTPClient.swift in Sources */,
 				8E9F3BD92B99E57C00B1EC8A /* CurrencyQuote.swift in Sources */,
+				8E9F3CAB2B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift in Sources */,
 				8E9F3BE62B9A222F00B1EC8A /* CurrencyQuoteMapper.swift in Sources */,
 				8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */,
+				8E9F3C942B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld in Sources */,
+				8E9F3CA92B9CBA5F00B1EC8A /* ManagedCurrency.swift in Sources */,
 				8E9F3BE42B9A1C5700B1EC8A /* RemoteCurrencyQuoteLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,6 +577,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8E9F3C922B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8E9F3C932B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodel */,
+			);
+			currentVersion = 8E9F3C932B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodel */;
+			path = CurrencyQuotes.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8E9F3BB62B99E4BF00B1EC8A /* Project object */;
 }
