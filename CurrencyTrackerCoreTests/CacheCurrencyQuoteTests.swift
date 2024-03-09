@@ -8,26 +8,6 @@
 import XCTest
 @testable import CurrencyTrackerCore
 
-final class LocalCurrencyQuoteHandler {
-    private let store: CurrencyQuoteStore
-    
-    init(store: CurrencyQuoteStore) {
-        self.store = store
-    }
-    
-    func save(quotes: [CurrencyQuote]) async throws {
-        guard let codeIn = quotes.first?.codeIn else { return }
-        
-        try await store.delete(with: codeIn)
-        try await store.save(quotes: quotes)
-    }
-}
-
-protocol CurrencyQuoteStore {
-    func save(quotes: [CurrencyQuote]) async throws
-    func delete(with codeIn: String) async throws
-}
-
 final class CacheCurrencyQuoteTests: XCTestCase {
 
     func test_init_doesNotMessageStoreUponCreation() async throws {
