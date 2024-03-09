@@ -21,7 +21,7 @@ final class LocalCurrencyQuoteHandler {
         try await store.save(quotes: quotes)
     }
     
-    func load(codeIn: String) async throws {
-        try await store.retrieve(codeIn: codeIn)
+    func load(codeIn: String) async throws -> [CurrencyQuote] {
+        return try await store.retrieve(codeIn: codeIn) ?? []
     }
 }
