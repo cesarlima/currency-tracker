@@ -15,12 +15,27 @@ final class LoadCurrencyQuotesFromCacheTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_load_requestsCacheRetrieval()  async throws {
+    func test_load_requestsCacheRetrieval() async throws {
         let (sut, store) = makeSUT()
         
         _ = try? await sut.load(codeIn: "BRL")
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
+    func test_load_failsOnRetrievalError() async throws {
+        let (sut, store) = makeSUT()
+        let expectedError = makeNSError()
+        var receivedError: NSError?
+        store.completeRetrieval(with: expectedError)
+        
+        do {
+            try await sut.load(codeIn: "BRL")
+        } catch {
+            receivedError = error as NSError
+        }
+        
+        XCTAssertEqual(expectedError, receivedError)
     }
     
     // MARK: - Helpers

@@ -17,6 +17,7 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
     
     private var deletionResult: Result<Void, Error>?
     private var insertionResult: Result<Void, Error>?
+    private var retrievalResult: Result<Void, Error>?
     
     private(set) var receivedMessages: [ReceivedMessage] = []
     
@@ -39,5 +40,10 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
     
     func retrieve(codeIn: String) async throws {
         receivedMessages.append(.retrieve)
+        try retrievalResult?.get()
+    }
+    
+    func completeRetrieval(with error: Error) {
+        retrievalResult = .failure(error)
     }
 }
