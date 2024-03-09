@@ -207,14 +207,6 @@ private final class HttpClientSpy: HttpClient {
     }
 }
 
-private func makeNSError() -> NSError {
-    NSError(domain: "any erro", code: 0)
-}
-
-private func anyURL() -> URL {
-    URL(string: "http://any-url.com")!
-}
-
 private func makeSuccessResponse(withStatusCode code: Int, data: Data, url: URL) -> Swift.Result<(Data, HTTPURLResponse), Error> {
     let response = HTTPURLResponse(
         url: url,

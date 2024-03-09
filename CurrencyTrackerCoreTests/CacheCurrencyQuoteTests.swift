@@ -123,11 +123,3 @@ final class CacheCurrencyQuoteTests: XCTestCase {
         return (data, currencies)
     }
 }
-
-private func anyURL() -> URL {
-    URL(string: "http://any-url.com")!
-}
-
-private func makeNSError() -> NSError {
-    NSError(domain: "any erro", code: 0)
-}

@@ -16,6 +16,7 @@
 		8E9F3BE62B9A222F00B1EC8A /* CurrencyQuoteMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE52B9A222F00B1EC8A /* CurrencyQuoteMapper.swift */; };
 		8E9F3BEA2B9A4BB000B1EC8A /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3BE92B9A4BB000B1EC8A /* URLSessionHTTPClient.swift */; };
 		8E9F3C832B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3C822B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift */; };
+		8E9F3C862B9BDE8800B1EC8A /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3C852B9BDE8800B1EC8A /* SharedTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		8E9F3BE52B9A222F00B1EC8A /* CurrencyQuoteMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteMapper.swift; sourceTree = "<group>"; };
 		8E9F3BE92B9A4BB000B1EC8A /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		8E9F3C822B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheCurrencyQuoteTests.swift; sourceTree = "<group>"; };
+		8E9F3C852B9BDE8800B1EC8A /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		8E9F3BCB2B99E4BF00B1EC8A /* CurrencyTrackerCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				8E9F3C842B9BDE6600B1EC8A /* Helpers */,
 				8E9F3BCC2B99E4BF00B1EC8A /* CurrencyQuoteLoaderTests.swift */,
 				8E9F3C822B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift */,
 			);
@@ -122,6 +125,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E9F3C842B9BDE6600B1EC8A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8E9F3C852B9BDE8800B1EC8A /* SharedTestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +259,7 @@
 			files = (
 				8E9F3C832B9BB61300B1EC8A /* CacheCurrencyQuoteTests.swift in Sources */,
 				8E9F3BCD2B99E4BF00B1EC8A /* CurrencyQuoteLoaderTests.swift in Sources */,
+				8E9F3C862B9BDE8800B1EC8A /* SharedTestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
