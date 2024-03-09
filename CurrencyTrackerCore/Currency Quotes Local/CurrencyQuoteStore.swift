@@ -10,4 +10,5 @@ import Foundation
 protocol CurrencyQuoteStore {
     func save(quotes: [CurrencyQuote]) async throws
     func delete(with codeIn: String) async throws
+    func retrieve(codeIn: String) async throws
 }

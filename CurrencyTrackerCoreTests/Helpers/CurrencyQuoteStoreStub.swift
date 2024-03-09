@@ -12,6 +12,7 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
     
     enum ReceivedMessage: Equatable {
         case deleteCachedCurrencyQuote(String)
+        case retrieve
     }
     
     private var deletionResult: Result<Void, Error>?
@@ -34,5 +35,9 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
     
     func completeInsertion(with error: Error) {
         insertionResult = .failure(error)
+    }
+    
+    func retrieve(codeIn: String) async throws {
+        receivedMessages.append(.retrieve)
     }
 }

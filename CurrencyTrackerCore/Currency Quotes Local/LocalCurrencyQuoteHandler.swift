@@ -20,4 +20,8 @@ final class LocalCurrencyQuoteHandler {
         try await store.delete(with: codeIn)
         try await store.save(quotes: quotes)
     }
+    
+    func load(codeIn: String) async throws {
+        try await store.retrieve(codeIn: codeIn)
+    }
 }
