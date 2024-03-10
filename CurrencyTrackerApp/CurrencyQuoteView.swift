@@ -55,6 +55,11 @@ struct CurrencyQuoteView: View {
                 
             }.navigationTitle("Cotações")
         }
+        .onAppear {
+            Task {
+                await viewModel.loadCurrencyQuotes()
+            }
+        }
     }
 }
 
@@ -79,6 +84,15 @@ final class CurrencyQuoteViewModel: ObservableObject {
     
     init(currencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol) {
         self.currencyQuoteLoadUseCase = currencyQuoteLoadUseCase
+    }
+    
+    func loadCurrencyQuotes() async {
+        do {
+            currencyQuotes = try await currencyQuoteLoadUseCase.load(toCurrency: selectedCurrency.code,
+                                                                     from: currencies)
+        } catch {
+            print(error)
+        }
     }
 }
 
