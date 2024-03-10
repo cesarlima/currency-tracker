@@ -38,7 +38,7 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
         insertionResult = .failure(error)
     }
     
-    func retrieve(codeIn: String) async throws -> [CurrencyQuote]? {
+    func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyQuote]? {
         receivedMessages.append(.retrieve)
         let result = try retrievalResult?.get()
         return result

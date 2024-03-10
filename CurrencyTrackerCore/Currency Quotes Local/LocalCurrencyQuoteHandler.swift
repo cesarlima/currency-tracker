@@ -22,6 +22,6 @@ final class LocalCurrencyQuoteHandler {
     }
     
     func load(codeIn: String) async throws -> [CurrencyQuote] {
-        return try await store.retrieve(codeIn: codeIn) ?? []
+        return try await store.retrieveWhereCodeInEquals(codeIn) ?? []
     }
 }

@@ -14,7 +14,7 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         let sut = makeSUT()
         
         await performWithoutError {
-            let result = try await sut.retrieve(codeIn: "USD")
+            let result = try await sut.retrieveWhereCodeInEquals("USD")
             XCTAssertEqual(result, [])
         }
     }
@@ -63,7 +63,7 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
             let currencyCodeIn = "USD"
             try await sut.save(quotes: makeCurrencies(codeIn: currencyCodeIn).models)
             try await sut.deleteWhereCodeInEquals(currencyCodeIn)
-            let result = try await sut.retrieve(codeIn: currencyCodeIn)
+            let result = try await sut.retrieveWhereCodeInEquals(currencyCodeIn)
             
             XCTAssertTrue(result!.isEmpty)
         })
@@ -79,7 +79,7 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
             
             try await sut.save(quotes: exptectedModelsToBeRetrieved)
             try await sut.save(quotes: notExptectedModelsToBeRetrieved)
-            let retriviedModels = try await sut.retrieve(codeIn: currencyCodeIn)!
+            let retriviedModels = try await sut.retrieveWhereCodeInEquals(currencyCodeIn)!
             let sortedretriviedModels = retriviedModels.sorted { $0.id < $1.id }
             
             XCTAssertEqual(exptectedModelsToBeRetrieved, sortedretriviedModels)

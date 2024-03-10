@@ -43,7 +43,7 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
         })
     }
     
-    func retrieve(codeIn: String) async throws -> [CurrencyTrackerCore.CurrencyQuote]? {
+    func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyTrackerCore.CurrencyQuote]? {
         let context = context
         
         let managedQuotes = try await context.perform({
