@@ -19,7 +19,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     func test_load_requestsDataFromURL() async throws {
         let url = anyURL()
         let (sut, client) = makeSUT()
-        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
+        client.completeWithEmptyResponse()
         
         _ = try await sut.load(from: url)
         
@@ -29,7 +29,8 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     func test_load_requestsDataFromURLTwice() async throws {
         let url = anyURL()
         let (sut, client) = makeSUT()
-        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
+        client.completeWithEmptyResponse()
+        
      
         _ = try await sut.load(from: url)
         _ = try await sut.load(from: url)
@@ -40,7 +41,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientCompletesError() async throws {
         let url = anyURL()
         let (sut, client) = makeSUT()
-        client.result = .failure(makeNSError())
+        client.completeWithError()
         var didFailWithError: Error?
         
         do {
@@ -59,8 +60,8 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         let httpCodes = [199, 201, 300, 400, 500]
         
         httpCodes.enumerated().forEach { index, statusCode in
-            
-            client.result = makeSuccessResponse(withStatusCode: statusCode, data: Data(), url: url)
+            client.completeSuccess(with: Data("{}".utf8), statusCode: statusCode)
+//            client.result = makeSuccessResponse(withStatusCode: statusCode, data: Data(), url: url)
             
             Task {
                 var didFailWithError: Error?
@@ -79,7 +80,8 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() async throws {
         let url = anyURL()
         let (sut, client) = makeSUT()
-        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("invalid json".utf8), url: url)
+        client.completeSuccess(with: Data("invalid json".utf8))
+//        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("invalid json".utf8), url: url)
         var didFailWithError: Error?
         
         do {
@@ -94,7 +96,8 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
     func test_load_deliversNoCurrenciesOn200HTTPResponseWithEmptyJSON() async throws {
         let url = anyURL()
         let (sut, client) = makeSUT()
-        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
+        client.completeSuccess(with: Data("{}".utf8), statusCode: 200)
+//        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
         
         do {
             let currencies = try await sut.load(from: url)
@@ -109,7 +112,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         
         let url = anyURL()
         let (sut, client) = makeSUT()
-        client.result = makeSuccessResponse(withStatusCode: 200, data: data, url: url)
+        client.completeSuccess(with: data, statusCode: 200)
         
         do {
             let currencies = try await sut.load(from: url)

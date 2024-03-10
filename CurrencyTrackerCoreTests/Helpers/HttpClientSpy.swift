@@ -12,7 +12,7 @@ final class HttpClientSpy: HttpClient {
     typealias LoadResponse = Swift.Result<(Data, HTTPURLResponse), Error>
     
     private(set) var requestedURLs: [URL] = []
-    var result: LoadResponse?
+    private var result: LoadResponse?
     
     func get(from url: URL) async throws -> (Data, HTTPURLResponse) {
         requestedURLs.append(url)
@@ -40,8 +40,8 @@ final class HttpClientSpy: HttpClient {
         result = .failure(makeNSError())
     }
     
-    func completeSuccess(with data: Data) {
-        result = makeSuccessResponse(withStatusCode: 200,
+    func completeSuccess(with data: Data, statusCode: Int = 200) {
+        result = makeSuccessResponse(withStatusCode: statusCode,
                                      data: data,
                                      url: anyURL())
     }
