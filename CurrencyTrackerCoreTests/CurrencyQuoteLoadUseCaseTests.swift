@@ -30,15 +30,17 @@ final class CurrencyQuoteLoadUseCase {
                                                                                     currencies: currencies))
         
         if let remoteLoadResult, remoteLoadResult.isEmpty == false {
+            try? await currencyQuoteCache.save(quotes: remoteLoadResult)
             return remoteLoadResult
-        } else {
-            return try await currencyQuoteCache.load(codeIn: toCurrency)
         }
+        
+        return try await currencyQuoteCache.load(codeIn: toCurrency)
+        
     }
     
     private func composeURL(toCurrency: String, currencies: [Currency]) -> URL {
         let path = currencies.map { "\($0.code)-\(toCurrency)"}.joined(separator: ",")
-        return self.url.appending(path: path)
+        return url.appending(path: path)
     }
 }
 
@@ -76,6 +78,18 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
         }
 
         XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
+    
+    func test_load_cacheResponseOnRemoteLoadCompletesWithValues() async {
+        let (sut, store, httpClient) = makeSUT()
+        let toCurrency = "BRL"
+        httpClient.completeSuccess(with: makeCurrencies().data)
+        
+        await performWithoutError {
+            _ = try await sut.load(toCurrency: toCurrency, from: makeCurrenciesModel())
+        }
+
+        XCTAssertEqual(store.receivedMessages, [.deleteCachedCurrencyQuote(toCurrency), .insert(makeCurrencies().models)])
     }
 
     // MARK: - Helpers
@@ -145,6 +159,12 @@ private final class HttpClientSpy: HttpClient {
     
     func completeWithError() {
         result = .failure(makeNSError())
+    }
+    
+    func completeSuccess(with data: Data) {
+        result = makeSuccessResponse(withStatusCode: 200,
+                                     data: data,
+                                     url: anyURL())
     }
 }
 
