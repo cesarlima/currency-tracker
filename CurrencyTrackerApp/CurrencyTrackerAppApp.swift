@@ -11,7 +11,7 @@ import SwiftUI
 struct CurrencyTrackerAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CurrencyQuoteView(viewModel: CurrencyQuoteViewModel(currencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseMock()))
         }
     }
 }
