@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CurrencyQuoteCache {
+public protocol CurrencyQuoteCache {
     func save(quotes: [CurrencyQuote]) async throws
     func load(codeIn: String) async throws -> [CurrencyQuote]
 }

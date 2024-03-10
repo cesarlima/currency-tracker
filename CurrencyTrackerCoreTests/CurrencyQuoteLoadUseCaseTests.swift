@@ -8,37 +8,6 @@
 import XCTest
 @testable import CurrencyTrackerCore
 
-final class CurrencyQuoteLoadUseCase {
-    private let currencyQuoteLoader: CurrencyQuoteLoader
-    private let currencyQuoteCache: CurrencyQuoteCache
-    private let url: URL
-    
-    init(url: URL, currencyQuoteLoader: CurrencyQuoteLoader, currencyQuoteCache: CurrencyQuoteCache) {
-        self.url = url
-        self.currencyQuoteLoader = currencyQuoteLoader
-        self.currencyQuoteCache = currencyQuoteCache
-    }
-    
-    func load(toCurrency: String, from currencies: [Currency]) async throws -> [CurrencyQuote] {
-        
-        let remoteLoadResult = try? await currencyQuoteLoader.load(from: composeURL(toCurrency: toCurrency,
-                                                                                    currencies: currencies))
-        
-        if let remoteLoadResult, remoteLoadResult.isEmpty == false {
-            try? await currencyQuoteCache.save(quotes: remoteLoadResult)
-            return remoteLoadResult
-        }
-        
-        return try await currencyQuoteCache.load(codeIn: toCurrency)
-        
-    }
-    
-    private func composeURL(toCurrency: String, currencies: [Currency]) -> URL {
-        let path = currencies.map { "\($0.code)-\(toCurrency)"}.joined(separator: ",")
-        return url.appending(path: path)
-    }
-}
-
 final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
 
     func test_load_requestsRemoteLoaderWithACorrectURL() async {

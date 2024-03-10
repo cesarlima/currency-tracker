@@ -31,6 +31,7 @@
 		8E9F3CB82B9DE9AB00B1EC8A /* CurrencyQuoteLoadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CB72B9DE9AB00B1EC8A /* CurrencyQuoteLoadUseCaseTests.swift */; };
 		8E9F3CBA2B9E2AE900B1EC8A /* HttpClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CB92B9E2AE900B1EC8A /* HttpClientSpy.swift */; };
 		8E9F3CBC2B9E2CCA00B1EC8A /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CBB2B9E2CCA00B1EC8A /* Currency.swift */; };
+		8E9F3CBE2B9E2D1500B1EC8A /* CurrencyQuoteLoadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CBD2B9E2D1500B1EC8A /* CurrencyQuoteLoadUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		8E9F3CB72B9DE9AB00B1EC8A /* CurrencyQuoteLoadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteLoadUseCaseTests.swift; sourceTree = "<group>"; };
 		8E9F3CB92B9E2AE900B1EC8A /* HttpClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientSpy.swift; sourceTree = "<group>"; };
 		8E9F3CBB2B9E2CCA00B1EC8A /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		8E9F3CBD2B9E2D1500B1EC8A /* CurrencyQuoteLoadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteLoadUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */,
 				8E9F3CB52B9DE33600B1EC8A /* CurrencyQuoteCache.swift */,
 				8E9F3CBB2B9E2CCA00B1EC8A /* Currency.swift */,
+				8E9F3CBD2B9E2D1500B1EC8A /* CurrencyQuoteLoadUseCase.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				8E9F3BE62B9A222F00B1EC8A /* CurrencyQuoteMapper.swift in Sources */,
 				8E9F3CB62B9DE33600B1EC8A /* CurrencyQuoteCache.swift in Sources */,
 				8E9F3BE02B9A1B5B00B1EC8A /* HttpClient.swift in Sources */,
+				8E9F3CBE2B9E2D1500B1EC8A /* CurrencyQuoteLoadUseCase.swift in Sources */,
 				8E9F3CB02B9CD77800B1EC8A /* CoreDataCurrencyQuoteStore.swift in Sources */,
 				8E9F3C942B9CAF3500B1EC8A /* CurrencyQuotes.xcdatamodeld in Sources */,
 				8E9F3CA92B9CBA5F00B1EC8A /* ManagedCurrency.swift in Sources */,
