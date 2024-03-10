@@ -7,7 +7,11 @@
 
 import Foundation
 
-public final class CurrencyQuoteLoadUseCase {
+public protocol CurrencyQuoteLoadUseCaseProtocol {
+    func load(toCurrency: String, from currencies: [Currency]) async throws -> [CurrencyQuote]
+}
+
+public final class CurrencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol {
     private let currencyQuoteLoader: CurrencyQuoteLoader
     private let currencyQuoteCache: CurrencyQuoteCache
     private let url: URL
