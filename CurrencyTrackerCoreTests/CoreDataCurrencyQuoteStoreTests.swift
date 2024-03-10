@@ -61,6 +61,21 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         }
     }
     
+    func test_delete_emptiesPreviousCachedData() async {
+        let sut = makeSUT()
+        
+        do {
+            let currencyCodeIn = "USD"
+            try await sut.save(quotes: makeCurrencies(codeIn: currencyCodeIn).models)
+            try await sut.deleteWhereCodeInEquals(currencyCodeIn)
+            let result = try await sut.retrieve(codeIn: currencyCodeIn)
+            
+            XCTAssertTrue(result!.isEmpty)
+        } catch {
+            XCTFail("Expected no error but got \(error) instead.")
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> CoreDataCurrencyQuoteStore {

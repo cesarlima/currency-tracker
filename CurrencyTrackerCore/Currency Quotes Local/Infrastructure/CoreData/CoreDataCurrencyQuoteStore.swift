@@ -30,7 +30,17 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
     }
     
     func deleteWhereCodeInEquals(_ codeIn: String) async throws {
+        let context = context
         
+        try await context.perform({
+            let managedQuotes = try ManagedCurrencyQuote.findByCodeIn(codeIn, in: context) ?? []
+            
+            managedQuotes.forEach { managedQuote in
+                context.delete(managedQuote)
+            }
+            
+            try context.save()
+        })
     }
     
     func retrieve(codeIn: String) async throws -> [CurrencyTrackerCore.CurrencyQuote]? {
