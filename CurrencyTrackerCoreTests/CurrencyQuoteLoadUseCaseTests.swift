@@ -25,14 +25,15 @@ final class CurrencyQuoteLoadUseCase {
     }
     
     func load(toCurrency: String, from currencies: [Currency]) async throws -> [CurrencyQuote] {
-        let remoteLoadResult = try await currencyQuoteLoader.load(from: composeURL(toCurrency: toCurrency,
-                                                                                   currencies: currencies))
         
-        if remoteLoadResult.isEmpty {
+        let remoteLoadResult = try? await currencyQuoteLoader.load(from: composeURL(toCurrency: toCurrency,
+                                                                                    currencies: currencies))
+        
+        if let remoteLoadResult, remoteLoadResult.isEmpty == false {
+            return remoteLoadResult
+        } else {
             return try await currencyQuoteCache.load(codeIn: toCurrency)
         }
-        
-        return remoteLoadResult
     }
     
     private func composeURL(toCurrency: String, currencies: [Currency]) -> URL {
@@ -65,6 +66,17 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
 
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
+    
+    func test_load_requestsCacheToLoadOnRemoteLoadCompletionError() async {
+        let (sut, store, httpClient) = makeSUT()
+        httpClient.completeWithError()
+        
+        await performWithoutError {
+            _ = try await sut.load(toCurrency: "BRL", from: makeCurrenciesModel())
+        }
+
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
+    }
 
     // MARK: - Helpers
     
@@ -78,6 +90,16 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
         let sut = CurrencyQuoteLoadUseCase(url: url, currencyQuoteLoader: quoteLoader, currencyQuoteCache: quoteCache)
         
         return (sut, store, httpClient)
+    }
+    
+    private func performWithoutError(_ action: () async throws -> Void,
+                                    file: StaticString = #filePath,
+                                    line: UInt = #line) async {
+        do {
+            try await action()
+        } catch {
+            XCTFail("Expected no error but got \(error) instead.", file: file, line: line)
+        }
     }
 }
 
@@ -119,6 +141,10 @@ private final class HttpClientSpy: HttpClient {
         result = makeSuccessResponse(withStatusCode: 200,
                                      data: Data("{}".utf8),
                                      url: anyURL())
+    }
+    
+    func completeWithError() {
+        result = .failure(makeNSError())
     }
 }
 
