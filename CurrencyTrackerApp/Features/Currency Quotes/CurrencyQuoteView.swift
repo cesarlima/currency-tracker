@@ -71,35 +71,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-final class CurrencyQuoteViewModel: ObservableObject {
-    @Published var selectedCurrency: Currency = Currency(code: "BRL", name: "Real")
-    @Published private(set) var currencyQuotes: [CurrencyQuote] = []
-    
-    let currencies: [Currency] = [
-        Currency(code: "BRL", name: "Real"),
-        Currency(code: "USD", name: "Dólar"),
-        Currency(code: "EUR", name: "Euro"),
-        Currency(code: "BTC", name: "Bitcoin")
-    ]
-    
-    private let currencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol
-    
-    init(currencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol) {
-        self.currencyQuoteLoadUseCase = currencyQuoteLoadUseCase
-    }
-    
-    @MainActor
-    func loadCurrencyQuotes() async {
-        do {
-            currencyQuotes = try await currencyQuoteLoadUseCase.load(toCurrency: selectedCurrency.code,
-                                                                     from: currencies)
-        } catch {
-            print("--->>>", error)
-        }
-    }
-}
-
-final class CurrencyQuoteLoadUseCaseMock: CurrencyQuoteLoadUseCaseProtocol {
+private final class CurrencyQuoteLoadUseCaseMock: CurrencyQuoteLoadUseCaseProtocol {
     func load(toCurrency: String, from currencies: [Currency]) async throws -> [CurrencyQuote] {
         return [
             CurrencyQuote(name: "Dólar Americano",

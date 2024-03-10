@@ -40,6 +40,7 @@
 		8E9F3CED2B9E302100B1EC8A /* CurrencyTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */; };
 		8E9F3CEE2B9E302100B1EC8A /* CurrencyTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */; };
+		8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		8E9F3CD22B9E2FBD00B1EC8A /* CurrencyTrackerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyTrackerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9F3CD62B9E2FBD00B1EC8A /* CurrencyTrackerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTrackerAppTests.swift; sourceTree = "<group>"; };
 		8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComposer.swift; sourceTree = "<group>"; };
+		8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				8E9F3CC72B9E2FBC00B1EC8A /* CurrencyQuoteView.swift */,
+				8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */,
 			);
 			path = "Currency Quotes";
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */,
 				8E9F3CC82B9E2FBC00B1EC8A /* CurrencyQuoteView.swift in Sources */,
 				8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
