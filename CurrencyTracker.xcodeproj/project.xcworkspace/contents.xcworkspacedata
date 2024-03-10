@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/macpro/Documents/Testes/Lumx/CurrencyTrackerCore/CurrencyTracker.xcodeproj">
    </FileRef>
 </Workspace>
