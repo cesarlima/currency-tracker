@@ -26,6 +26,16 @@ final class CacheCurrencyQuoteTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.deleteCachedCurrencyQuote(models.first!.codeIn)])
     }
     
+    func test_save_deletesPreviusCachedData() async throws {
+        let (sut, store) = makeSUT()
+        let models = makeCurrencies().models
+        store.completeDeletionSuccessfully()
+        
+        try? await sut.save(quotes: models)
+    
+        XCTAssertEqual(store.receivedMessages, [.deleteCachedCurrencyQuote(models.first!.codeIn), .insert(models)])
+    }
+    
     func test_save_failsOnDeletionError() async throws {
         let (sut, store) = makeSUT()
         let deletionError = makeNSError()

@@ -13,6 +13,7 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
     enum ReceivedMessage: Equatable {
         case deleteCachedCurrencyQuote(String)
         case retrieve
+        case insert([CurrencyQuote])
     }
     
     private var deletionResult: Result<Void, Error>?
@@ -30,12 +31,21 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
         deletionResult = .failure(error)
     }
     
+    func completeDeletionSuccessfully() {
+        deletionResult = .success(())
+    }
+    
     func save(quotes: [CurrencyQuote]) async throws {
+        receivedMessages.append(.insert(quotes))
         try insertionResult?.get()
     }
     
     func completeInsertion(with error: Error) {
         insertionResult = .failure(error)
+    }
+    
+    func completeInsertionSuccessfully() {
+        insertionResult = .success(())
     }
     
     func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyQuote]? {
