@@ -18,9 +18,11 @@ struct CurrencyQuoteView: View {
                 HStack {
                     Text("Moeda:")
                         .fontWeight(.bold)
-                    Picker("Real", selection: $viewModel.selectedCurrency) {
-                        ForEach(viewModel.currencies, id: \.code) {
-                            Text($0.name)
+                    Picker(selection: $viewModel.selectedCurrency,
+                           label: Text(viewModel.selectedCurrency.name)) {
+                        
+                        ForEach(viewModel.currencies, id: \.name) {
+                            Text($0.name).tag($0)
                         }
                     }
                     .tint(Color(.label))
@@ -86,12 +88,13 @@ final class CurrencyQuoteViewModel: ObservableObject {
         self.currencyQuoteLoadUseCase = currencyQuoteLoadUseCase
     }
     
+    @MainActor
     func loadCurrencyQuotes() async {
         do {
             currencyQuotes = try await currencyQuoteLoadUseCase.load(toCurrency: selectedCurrency.code,
                                                                      from: currencies)
         } catch {
-            print(error)
+            print("--->>>", error)
         }
     }
 }

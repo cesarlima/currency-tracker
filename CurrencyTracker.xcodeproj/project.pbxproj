@@ -270,9 +270,9 @@
 		8E9F3CC42B9E2FBC00B1EC8A /* CurrencyTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				8EFFB4202B9E74FE00B7C9C7 /* Features */,
 				8E9F3CF22B9E728900B1EC8A /* App Composition */,
 				8E9F3CC52B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift */,
-				8E9F3CC72B9E2FBC00B1EC8A /* CurrencyQuoteView.swift */,
 				8E9F3CC92B9E2FBD00B1EC8A /* Assets.xcassets */,
 				8E9F3CCB2B9E2FBD00B1EC8A /* Preview Content */,
 			);
@@ -301,6 +301,22 @@
 				8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */,
 			);
 			path = "App Composition";
+			sourceTree = "<group>";
+		};
+		8EFFB4202B9E74FE00B7C9C7 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				8EFFB4212B9E751100B7C9C7 /* Currency Quotes */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		8EFFB4212B9E751100B7C9C7 /* Currency Quotes */ = {
+			isa = PBXGroup;
+			children = (
+				8E9F3CC72B9E2FBC00B1EC8A /* CurrencyQuoteView.swift */,
+			);
+			path = "Currency Quotes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
