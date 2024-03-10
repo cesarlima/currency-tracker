@@ -9,11 +9,15 @@ import Foundation
 import CoreData
 
 public final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
+    private static let modelName = "CurrencyQuotes"
+    
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
     
-    public init(storeURL: URL, bundle: Bundle = .main) throws {
-        container = try NSPersistentContainer.load(modelName: "CurrencyQuotes", url: storeURL, in: bundle)
+    public init(storeURL: URL) throws {
+        container = try NSPersistentContainer.load(modelName: Self.modelName,
+                                                   url: storeURL,
+                                                   in: Bundle(for: CoreDataCurrencyQuoteStore.self))
         context = container.newBackgroundContext()
     }
     

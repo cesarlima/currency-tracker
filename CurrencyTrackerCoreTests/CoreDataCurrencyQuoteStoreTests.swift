@@ -89,9 +89,8 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT() -> CoreDataCurrencyQuoteStore {
-        let storeBundle = Bundle(for: CoreDataCurrencyQuoteStore.self)
         let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try! CoreDataCurrencyQuoteStore(storeURL: storeURL, bundle: storeBundle)
+        let sut = try! CoreDataCurrencyQuoteStore(storeURL: storeURL)
         
         return sut
     }
