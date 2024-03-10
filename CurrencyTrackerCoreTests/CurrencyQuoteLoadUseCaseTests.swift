@@ -43,11 +43,20 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
         let expectedPath = currencies.map { "\($0.code)-\(toCurrency)"}.joined(separator: ",")
         let expectedURL = baseURL.appending(path: expectedPath)
         let (sut, _, httpClient) = makeSUT(url: baseURL)
-        httpClient.completeWithEmptyResponse(for: expectedURL)
+        httpClient.completeWithEmptyResponse()
 
-        _ = try! await sut.load(toCurrency: "BRL", from: currencies)
+        _ = try! await sut.load(toCurrency: toCurrency, from: currencies)
 
         XCTAssertEqual(httpClient.requestedURLs, [expectedURL])
+    }
+    
+    func test_load_doesNotPerformCacheToInsertOnRemoteLoadCompletionEmpty() async {
+        let (sut, stote, httpClient) = makeSUT()
+        httpClient.completeWithEmptyResponse()
+
+        _ = try! await sut.load(toCurrency: "BRL", from: makeCurrenciesModel())
+
+        XCTAssertTrue(stote.receivedMessages.isEmpty)
     }
 
     // MARK: - Helpers
@@ -99,10 +108,10 @@ private final class HttpClientSpy: HttpClient {
         }
     }
     
-    func completeWithEmptyResponse(for url: URL, at index: Int = 0) {
+    func completeWithEmptyResponse() {
         result = makeSuccessResponse(withStatusCode: 200,
-                                           data: Data("{}".utf8),
-                                           url: url)
+                                     data: Data("{}".utf8),
+                                     url: anyURL())
     }
 }
 
