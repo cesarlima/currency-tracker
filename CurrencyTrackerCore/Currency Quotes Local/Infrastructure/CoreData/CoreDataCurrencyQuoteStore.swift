@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
+public final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
     
@@ -17,7 +17,7 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
         context = container.newBackgroundContext()
     }
     
-    func save(quotes: [CurrencyQuote]) async throws {
+    public func save(quotes: [CurrencyQuote]) async throws {
         let context = context
         
         try await context.perform({
@@ -29,7 +29,7 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
         })
     }
     
-    func deleteWhereCodeInEquals(_ codeIn: String) async throws {
+    public func deleteWhereCodeInEquals(_ codeIn: String) async throws {
         let context = context
         
         try await context.perform({
@@ -43,7 +43,7 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
         })
     }
     
-    func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyQuote]? {
+    public func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyQuote]? {
         let context = context
         
         let managedQuotes = try await context.perform({

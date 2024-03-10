@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CurrencyQuoteStore {
+public protocol CurrencyQuoteStore {
     func save(quotes: [CurrencyQuote]) async throws
     func deleteWhereCodeInEquals(_ codeIn: String) async throws
     func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyQuote]?
