@@ -25,7 +25,14 @@ final class CurrencyQuoteLoadUseCase {
     }
     
     func load(toCurrency: String, from currencies: [Currency]) async throws -> [CurrencyQuote] {
-        return try await currencyQuoteLoader.load(from: composeURL(toCurrency: toCurrency, currencies: currencies))
+        let remoteLoadResult = try await currencyQuoteLoader.load(from: composeURL(toCurrency: toCurrency,
+                                                                                   currencies: currencies))
+        
+        if remoteLoadResult.isEmpty {
+            return try await currencyQuoteCache.load(codeIn: toCurrency)
+        }
+        
+        return remoteLoadResult
     }
     
     private func composeURL(toCurrency: String, currencies: [Currency]) -> URL {
@@ -50,13 +57,13 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
         XCTAssertEqual(httpClient.requestedURLs, [expectedURL])
     }
     
-    func test_load_doesNotPerformCacheToInsertOnRemoteLoadCompletionEmpty() async {
-        let (sut, stote, httpClient) = makeSUT()
+    func test_load_requestsCacheToLoadOnRemoteLoadCompletionEmpty() async {
+        let (sut, store, httpClient) = makeSUT()
         httpClient.completeWithEmptyResponse()
 
         _ = try! await sut.load(toCurrency: "BRL", from: makeCurrenciesModel())
 
-        XCTAssertTrue(stote.receivedMessages.isEmpty)
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
 
     // MARK: - Helpers
