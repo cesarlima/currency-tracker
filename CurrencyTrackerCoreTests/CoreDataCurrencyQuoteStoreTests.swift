@@ -13,29 +13,26 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
     func test_retrieve_deliversNilOnEmptyCache() async throws {
         let sut = makeSUT()
         
-        let result = try await sut.retrieve(codeIn: "USD")
-        
-        XCTAssertEqual(result, [])
+        await performWithoutError {
+            let result = try await sut.retrieve(codeIn: "USD")
+            XCTAssertEqual(result, [])
+        }
     }
     
     func test_insert_deliversNoErrorOnEmptyCache() async {
         let sut = makeSUT()
         
-        do {
+        await performWithoutError {
             try await sut.save(quotes: makeCurrencies().models)
-        } catch {
-            XCTFail("Expected no error but got \(error) instead.")
         }
     }
     
     func test_insert_deliversNoErrorOnNonEmptyCache() async {
         let sut = makeSUT()
         
-        do {
+        await performWithoutError {
             try await sut.save(quotes: makeCurrencies(codeIn: "EUR").models)
             try await sut.save(quotes: makeCurrencies(codeIn: "USD").models)
-        } catch {
-            XCTFail("Expected no error but got \(error) instead.")
         }
     }
     
@@ -53,27 +50,23 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
     func test_delete_deliversNoErrorOnNonEmptyCache() async {
         let sut = makeSUT()
         
-        do {
+        await performWithoutError({
             let currencyCodeIn = "USD"
             try await sut.deleteWhereCodeInEquals(currencyCodeIn)
-        } catch {
-            XCTFail("Expected no error but got \(error) instead.")
-        }
+        })
     }
     
     func test_delete_emptiesPreviousCachedData() async {
         let sut = makeSUT()
         
-        do {
+        await performWithoutError({
             let currencyCodeIn = "USD"
             try await sut.save(quotes: makeCurrencies(codeIn: currencyCodeIn).models)
             try await sut.deleteWhereCodeInEquals(currencyCodeIn)
             let result = try await sut.retrieve(codeIn: currencyCodeIn)
             
             XCTAssertTrue(result!.isEmpty)
-        } catch {
-            XCTFail("Expected no error but got \(error) instead.")
-        }
+        })
     }
     
     // MARK: - Helpers
@@ -84,5 +77,15 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         let sut = try! CoreDataCurrencyQuoteStore(storeURL: storeURL, bundle: storeBundle)
         
         return sut
+    }
+    
+    private func performWithoutError(_ action: () async throws -> Void,
+                                    file: StaticString = #filePath,
+                                    line: UInt = #line) async {
+        do {
+            try await action()
+        } catch {
+            XCTFail("Expected no error but got \(error) instead.", file: file, line: line)
+        }
     }
 }
