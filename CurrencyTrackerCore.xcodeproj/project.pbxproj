@@ -30,6 +30,7 @@
 		8E9F3CB62B9DE33600B1EC8A /* CurrencyQuoteCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CB52B9DE33600B1EC8A /* CurrencyQuoteCache.swift */; };
 		8E9F3CB82B9DE9AB00B1EC8A /* CurrencyQuoteLoadUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CB72B9DE9AB00B1EC8A /* CurrencyQuoteLoadUseCaseTests.swift */; };
 		8E9F3CBA2B9E2AE900B1EC8A /* HttpClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CB92B9E2AE900B1EC8A /* HttpClientSpy.swift */; };
+		8E9F3CBC2B9E2CCA00B1EC8A /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CBB2B9E2CCA00B1EC8A /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		8E9F3CB52B9DE33600B1EC8A /* CurrencyQuoteCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteCache.swift; sourceTree = "<group>"; };
 		8E9F3CB72B9DE9AB00B1EC8A /* CurrencyQuoteLoadUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteLoadUseCaseTests.swift; sourceTree = "<group>"; };
 		8E9F3CB92B9E2AE900B1EC8A /* HttpClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientSpy.swift; sourceTree = "<group>"; };
+		8E9F3CBB2B9E2CCA00B1EC8A /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				8E9F3BD82B99E57C00B1EC8A /* CurrencyQuote.swift */,
 				8E9F3BDA2B99E77300B1EC8A /* CurrencyQuoteLoader.swift */,
 				8E9F3CB52B9DE33600B1EC8A /* CurrencyQuoteCache.swift */,
+				8E9F3CBB2B9E2CCA00B1EC8A /* Currency.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				8E9F3BEA2B9A4BB000B1EC8A /* URLSessionHTTPClient.swift in Sources */,
 				8E9F3BD92B99E57C00B1EC8A /* CurrencyQuote.swift in Sources */,
 				8E9F3CB22B9CD7A400B1EC8A /* CoreDataHelpers.swift in Sources */,
+				8E9F3CBC2B9E2CCA00B1EC8A /* Currency.swift in Sources */,
 				8E9F3CAB2B9CBA5F00B1EC8A /* ManagedCurrencyQuote.swift in Sources */,
 				8E9F3BE62B9A222F00B1EC8A /* CurrencyQuoteMapper.swift in Sources */,
 				8E9F3CB62B9DE33600B1EC8A /* CurrencyQuoteCache.swift in Sources */,

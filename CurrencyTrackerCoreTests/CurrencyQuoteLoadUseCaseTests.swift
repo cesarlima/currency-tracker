@@ -8,11 +8,6 @@
 import XCTest
 @testable import CurrencyTrackerCore
 
-struct Currency: Equatable {
-    let code: String
-    let name: String
-}
-
 final class CurrencyQuoteLoadUseCase {
     private let currencyQuoteLoader: CurrencyQuoteLoader
     private let currencyQuoteCache: CurrencyQuoteCache
