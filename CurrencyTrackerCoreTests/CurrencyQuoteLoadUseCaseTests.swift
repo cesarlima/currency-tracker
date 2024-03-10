@@ -167,13 +167,3 @@ private final class HttpClientSpy: HttpClient {
                                      url: anyURL())
     }
 }
-
-private func makeSuccessResponse(withStatusCode code: Int, data: Data, url: URL) -> Swift.Result<(Data, HTTPURLResponse), Error> {
-    let response = HTTPURLResponse(
-        url: url,
-        statusCode: code,
-        httpVersion: nil,
-        headerFields: nil)!
-    
-    return .success((data, response))
-}

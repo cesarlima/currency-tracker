@@ -16,6 +16,18 @@ func makeNSError() -> NSError {
     NSError(domain: "any erro", code: 0)
 }
 
+func makeSuccessResponse(withStatusCode code: Int,
+                         data: Data,
+                         url: URL) -> Swift.Result<(Data, HTTPURLResponse), Error> {
+    let response = HTTPURLResponse(
+        url: url,
+        statusCode: code,
+        httpVersion: nil,
+        headerFields: nil)!
+    
+    return .success((data, response))
+}
+
 func makeCurrencies(codeIn: String = "BRL") -> (data: Data, models: [CurrencyQuote]) {
     let data = """
     {
