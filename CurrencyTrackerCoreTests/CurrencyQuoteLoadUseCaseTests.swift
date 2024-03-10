@@ -37,14 +37,11 @@ final class CurrencyQuoteLoadUseCase {
 final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
 
     func test_load_requestsRemoteLoaderWithACorrectURL() async {
-        let baseURL = URL(string: "http://any-url.com/currencies/last/")!
-        let expectedURL = URL(string: "http://any-url.com/currencies/last/USD-BRL,EUR-BRL,BTC-BRL")!
-                                      
-        let currencies = [
-            Currency(code: "USD", name: "Dólar"),
-            Currency(code: "EUR", name: "Euro"),
-            Currency(code: "BTC", name: "Bitcoin"),
-        ]
+        let currencies = makeCurrenciesModel()
+        let toCurrency = "BRL"
+        let baseURL = makeBaseURL()
+        let expectedPath = currencies.map { "\($0.code)-\(toCurrency)"}.joined(separator: ",")
+        let expectedURL = baseURL.appending(path: expectedPath)
         let (sut, _, httpClient) = makeSUT(url: baseURL)
         httpClient.completeWithEmptyResponse(for: expectedURL)
 
@@ -66,6 +63,14 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
         
         return (sut, store, httpClient)
     }
+}
+
+private func makeCurrenciesModel() -> [Currency] {
+    return [
+        Currency(code: "USD", name: "Dólar"),
+        Currency(code: "EUR", name: "Euro"),
+        Currency(code: "BTC", name: "Bitcoin"),
+    ]
 }
 
 private func makeBaseURL() -> URL {
