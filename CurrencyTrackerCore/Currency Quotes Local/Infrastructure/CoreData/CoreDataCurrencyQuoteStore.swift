@@ -17,7 +17,7 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
         context = container.newBackgroundContext()
     }
     
-    func save(quotes: [CurrencyTrackerCore.CurrencyQuote]) async throws {
+    func save(quotes: [CurrencyQuote]) async throws {
         let context = context
         
         try await context.perform({
@@ -43,7 +43,7 @@ final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
         })
     }
     
-    func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyTrackerCore.CurrencyQuote]? {
+    func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyQuote]? {
         let context = context
         
         let managedQuotes = try await context.perform({
