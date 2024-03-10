@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class LocalCurrencyQuoteHandler {
+final class LocalCurrencyQuoteCache: CurrencyQuoteCache {
     private let store: CurrencyQuoteStore
     
     init(store: CurrencyQuoteStore) {

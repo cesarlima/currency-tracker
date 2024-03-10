@@ -86,9 +86,9 @@ final class LoadCurrencyQuotesFromCacheTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LocalCurrencyQuoteHandler, store: CurrencyQuoteStoreStub) {
+    private func makeSUT() -> (sut: LocalCurrencyQuoteCache, store: CurrencyQuoteStoreStub) {
         let store = CurrencyQuoteStoreStub()
-        let sut = LocalCurrencyQuoteHandler(store: store)
+        let sut = LocalCurrencyQuoteCache(store: store)
         
         return (sut, store)
     }

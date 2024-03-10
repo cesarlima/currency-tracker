@@ -56,14 +56,14 @@ final class CacheCurrencyQuoteTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LocalCurrencyQuoteHandler, store: CurrencyQuoteStoreStub) {
+    private func makeSUT() -> (sut: LocalCurrencyQuoteCache, store: CurrencyQuoteStoreStub) {
         let store = CurrencyQuoteStoreStub()
-        let sut = LocalCurrencyQuoteHandler(store: store)
+        let sut = LocalCurrencyQuoteCache(store: store)
         
         return (sut, store)
     }
     
-    private func expect(_ sut: LocalCurrencyQuoteHandler,
+    private func expect(_ sut: LocalCurrencyQuoteCache,
                         toCompleteWithError expectedError: NSError,
                         when storeAction: () -> Void,
                         file: StaticString = #filePath,
