@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct CurrencyTrackerAppApp: App {
+    private let appComposer = AppComposer.shared
+    
     var body: some Scene {
         WindowGroup {
-            CurrencyQuoteView(viewModel: CurrencyQuoteViewModel(currencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseMock()))
+            appComposer.composeCurrencyQuoteView()
         }
     }
 }

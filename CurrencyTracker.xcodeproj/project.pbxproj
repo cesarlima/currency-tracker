@@ -39,6 +39,7 @@
 		8E9F3CD72B9E2FBD00B1EC8A /* CurrencyTrackerAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9F3CD62B9E2FBD00B1EC8A /* CurrencyTrackerAppTests.swift */; };
 		8E9F3CED2B9E302100B1EC8A /* CurrencyTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */; };
 		8E9F3CEE2B9E302100B1EC8A /* CurrencyTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		8E9F3CCC2B9E2FBD00B1EC8A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E9F3CD22B9E2FBD00B1EC8A /* CurrencyTrackerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyTrackerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9F3CD62B9E2FBD00B1EC8A /* CurrencyTrackerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTrackerAppTests.swift; sourceTree = "<group>"; };
+		8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 		8E9F3CC42B9E2FBC00B1EC8A /* CurrencyTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				8E9F3CF22B9E728900B1EC8A /* App Composition */,
 				8E9F3CC52B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift */,
 				8E9F3CC72B9E2FBC00B1EC8A /* CurrencyQuoteView.swift */,
 				8E9F3CC92B9E2FBD00B1EC8A /* Assets.xcassets */,
@@ -290,6 +293,14 @@
 				8E9F3CD62B9E2FBD00B1EC8A /* CurrencyTrackerAppTests.swift */,
 			);
 			path = CurrencyTrackerAppTests;
+			sourceTree = "<group>";
+		};
+		8E9F3CF22B9E728900B1EC8A /* App Composition */ = {
+			isa = PBXGroup;
+			children = (
+				8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */,
+			);
+			path = "App Composition";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E9F3CC82B9E2FBC00B1EC8A /* CurrencyQuoteView.swift in Sources */,
+				8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
