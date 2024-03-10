@@ -7,21 +7,21 @@
 
 import Foundation
 
-final class LocalCurrencyQuoteCache: CurrencyQuoteCache {
+public final class LocalCurrencyQuoteCache: CurrencyQuoteCache {
     private let store: CurrencyQuoteStore
     
-    init(store: CurrencyQuoteStore) {
+    public init(store: CurrencyQuoteStore) {
         self.store = store
     }
     
-    func save(quotes: [CurrencyQuote]) async throws {
+    public func save(quotes: [CurrencyQuote]) async throws {
         guard let codeIn = quotes.first?.codeIn else { return }
         
         try await store.deleteWhereCodeInEquals(codeIn)
         try await store.save(quotes: quotes)
     }
     
-    func load(codeIn: String) async throws -> [CurrencyQuote] {
+    public func load(codeIn: String) async throws -> [CurrencyQuote] {
         return try await store.retrieveWhereCodeInEquals(codeIn) ?? []
     }
 }
