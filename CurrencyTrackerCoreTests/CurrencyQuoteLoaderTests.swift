@@ -129,26 +129,3 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         return (sut, client)
     }
 }
-
-private final class HttpClientSpy: HttpClient {
-    typealias LoadResponse = Swift.Result<(Data, HTTPURLResponse), Error>
-    
-    private(set) var requestedURLs: [URL] = []
-    var result: LoadResponse?
-    
-    func get(from url: URL) async throws -> (Data, HTTPURLResponse) {
-        requestedURLs.append(url)
-        
-        guard let result = result else {
-            throw NSError(domain: "Result is nil", code: 0)
-        }
-        
-        switch result {
-        case .success(let response):
-            return response
-            
-        case .failure(let error):
-            throw error
-        }
-    }
-}
