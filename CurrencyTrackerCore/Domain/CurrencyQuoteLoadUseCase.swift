@@ -37,7 +37,10 @@ public final class CurrencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol {
     }
     
     private func composeURL(toCurrency: String, currencies: [Currency]) -> URL {
-        let path = currencies.map { "\($0.code)-\(toCurrency)"}.joined(separator: ",")
+        let path = currencies
+            .filter { $0.code != toCurrency }
+            .map { "\($0.code)-\(toCurrency)"}
+            .joined(separator: ",")
         return url.appending(path: path)
     }
 }

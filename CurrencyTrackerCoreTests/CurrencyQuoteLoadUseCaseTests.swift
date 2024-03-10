@@ -14,7 +14,7 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
         let currencies = makeCurrenciesModel()
         let toCurrency = "BRL"
         let baseURL = makeBaseURL()
-        let expectedPath = currencies.map { "\($0.code)-\(toCurrency)"}.joined(separator: ",")
+        let expectedPath = "USD-BRL,EUR-BRL,BTC-BRL"
         let expectedURL = baseURL.appending(path: expectedPath)
         let (sut, _, httpClient) = makeSUT(url: baseURL)
         httpClient.completeWithEmptyResponse()
@@ -83,6 +83,7 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
 
 private func makeCurrenciesModel() -> [Currency] {
     return [
+        Currency(code: "BRL", name: "Real"),
         Currency(code: "USD", name: "Dólar"),
         Currency(code: "EUR", name: "Euro"),
         Currency(code: "BTC", name: "Bitcoin"),
