@@ -69,6 +69,23 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         })
     }
     
+    func test_retrieve_deliversFoundValuesOnNonEmptyCache() async {
+        let sut = makeSUT()
+        
+        await performWithoutError({
+            let currencyCodeIn = "BTC"
+            let exptectedModelsToBeRetrieved = makeCurrencies(codeIn: currencyCodeIn).models.sorted { $0.id < $1.id }
+            let notExptectedModelsToBeRetrieved = makeCurrencies(codeIn: "BRL").models
+            
+            try await sut.save(quotes: exptectedModelsToBeRetrieved)
+            try await sut.save(quotes: notExptectedModelsToBeRetrieved)
+            let retriviedModels = try await sut.retrieve(codeIn: currencyCodeIn)!
+            let sortedretriviedModels = retriviedModels.sorted { $0.id < $1.id }
+            
+            XCTAssertEqual(exptectedModelsToBeRetrieved, sortedretriviedModels)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> CoreDataCurrencyQuoteStore {
