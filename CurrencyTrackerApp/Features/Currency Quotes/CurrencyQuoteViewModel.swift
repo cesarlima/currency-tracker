@@ -12,6 +12,12 @@ final class CurrencyQuoteViewModel: ObservableObject {
     @Published private(set) var isLoading = false
     @Published var selectedCurrency: Currency = Currency(code: "BRL", name: "Real")
     @Published private(set) var currencyQuotes: [CurrencyQuote] = []
+    @Published var isShowingAlert = false
+    private(set) var alertItem: AlertItem? {
+        didSet {
+            isShowingAlert = true
+        }
+    }
     
     let currencies: [Currency] = [
         Currency(code: "BRL", name: "Real"),
@@ -35,7 +41,7 @@ final class CurrencyQuoteViewModel: ObservableObject {
             currencyQuotes = try await currencyQuoteLoadUseCase.load(toCurrency: selectedCurrency.code,
                                                                      from: currencies)
         } catch {
-            print("--->>>", error)
+            alertItem = AlertContext.loadQuotesGenericError
         }
     }
 }
