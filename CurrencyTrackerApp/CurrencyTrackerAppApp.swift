@@ -13,7 +13,7 @@ struct CurrencyTrackerAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            appComposer.composeCurrencyQuoteView()
+            CurrencyTrackerTabView(appComposer: appComposer)
         }
     }
 }

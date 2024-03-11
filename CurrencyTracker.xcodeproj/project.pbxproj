@@ -43,6 +43,7 @@
 		8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */; };
 		8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */; };
 		8EFFB4292B9E9A4500B7C9C7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */; };
+		8EFFB42C2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42B2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteViewModel.swift; sourceTree = "<group>"; };
 		8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		8EFFB42B2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTrackerTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +283,7 @@
 				8EFFB4202B9E74FE00B7C9C7 /* Features */,
 				8E9F3CF22B9E728900B1EC8A /* App Composition */,
 				8E9F3CC52B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift */,
+				8EFFB42B2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift */,
 				8E9F3CC92B9E2FBD00B1EC8A /* Assets.xcassets */,
 				8E9F3CCB2B9E2FBD00B1EC8A /* Preview Content */,
 			);
@@ -559,6 +562,7 @@
 				8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
 				8EFFB4292B9E9A4500B7C9C7 /* LoadingView.swift in Sources */,
+				8EFFB42C2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
