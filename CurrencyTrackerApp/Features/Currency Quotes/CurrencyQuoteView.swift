@@ -45,7 +45,7 @@ struct CurrencyQuoteView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text(currency.name)
                             Text(currency.quote, format: .currency(code: currency.codeIn))
-                            Text(currency.quoteDate, format: .dateTime)
+                            Text(DateFormatter.format(date: currency.quoteDate))
                         }
                         .frame(width: 170, alignment: .leading)
                     }
