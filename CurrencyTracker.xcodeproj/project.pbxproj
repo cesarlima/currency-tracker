@@ -45,6 +45,7 @@
 		8EFFB4292B9E9A4500B7C9C7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */; };
 		8EFFB42C2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42B2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift */; };
 		8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42D2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift */; };
+		8EFFB4302B9F38E000B7C9C7 /* CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42F2B9F38E000B7C9C7 /* CurrencyPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		8EFFB42B2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTrackerTabView.swift; sourceTree = "<group>"; };
 		8EFFB42D2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteCell.swift; sourceTree = "<group>"; };
+		8EFFB42F2B9F38E000B7C9C7 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,9 +329,10 @@
 		8EFFB4212B9E751100B7C9C7 /* Currency Quotes */ = {
 			isa = PBXGroup;
 			children = (
+				8EFFB42F2B9F38E000B7C9C7 /* CurrencyPicker.swift */,
+				8EFFB42D2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift */,
 				8E9F3CC72B9E2FBC00B1EC8A /* CurrencyQuoteView.swift */,
 				8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */,
-				8EFFB42D2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift */,
 			);
 			path = "Currency Quotes";
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */,
 				8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
+				8EFFB4302B9F38E000B7C9C7 /* CurrencyPicker.swift in Sources */,
 				8EFFB4292B9E9A4500B7C9C7 /* LoadingView.swift in Sources */,
 				8EFFB42C2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift in Sources */,
 			);

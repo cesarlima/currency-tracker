@@ -11,31 +11,18 @@ import CurrencyTrackerCore
 struct CurrencyQuoteView: View {
     @StateObject var viewModel: CurrencyQuoteViewModel
     
-    
     var body: some View {
         ZStack {
             NavigationStack {
                 VStack {
                     
-                    HStack {
-                        Text("Moeda:")
-                            .fontWeight(.bold)
-                        Picker(selection: $viewModel.selectedCurrency,
-                               label: Text(viewModel.selectedCurrency.name)) {
-                            
-                            ForEach(viewModel.currencies, id: \.name) {
-                                Text($0.name).tag($0)
-                            }
-                        }
-                        .tint(Color(.label))
-                        .onChange(of: viewModel.selectedCurrency) { newValue in
-                            Task {
-                                await viewModel.loadCurrencyQuotes()
-                            }
+                    CurrencyPicker(selectedCurrency: $viewModel.selectedCurrency,
+                                   currencies: viewModel.currencies)
+                    .onChange(of: viewModel.selectedCurrency) { _ in
+                        Task {
+                            await viewModel.loadCurrencyQuotes()
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
                     
                     Spacer(minLength: 30)
                     
