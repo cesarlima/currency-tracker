@@ -49,6 +49,7 @@
 		8EFFB4322B9F4D9100B7C9C7 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */; };
 		8EFFB4352B9F54F200B7C9C7 /* CurrencyConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4342B9F54F200B7C9C7 /* CurrencyConverterView.swift */; };
 		8EFFB4382B9F81D500B7C9C7 /* CurrencySymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4372B9F81D500B7C9C7 /* CurrencySymbol.swift */; };
+		8EFFB43A2B9F837600B7C9C7 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4392B9F837600B7C9C7 /* CurrencyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		8EFFB4342B9F54F200B7C9C7 /* CurrencyConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterView.swift; sourceTree = "<group>"; };
 		8EFFB4372B9F81D500B7C9C7 /* CurrencySymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySymbol.swift; sourceTree = "<group>"; };
+		8EFFB4392B9F837600B7C9C7 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				8EFFB4342B9F54F200B7C9C7 /* CurrencyConverterView.swift */,
+				8EFFB4392B9F837600B7C9C7 /* CurrencyView.swift */,
 			);
 			path = "Currency Converter";
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				8EFFB4322B9F4D9100B7C9C7 /* AlertItem.swift in Sources */,
 				8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */,
 				8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */,
+				8EFFB43A2B9F837600B7C9C7 /* CurrencyView.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
 				8EFFB4302B9F38E000B7C9C7 /* CurrencyPicker.swift in Sources */,
 				8EFFB4292B9E9A4500B7C9C7 /* LoadingView.swift in Sources */,
