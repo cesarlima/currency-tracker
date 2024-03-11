@@ -13,52 +13,58 @@ struct CurrencyQuoteView: View {
     
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                
-                HStack {
-                    Text("Moeda:")
-                        .fontWeight(.bold)
-                    Picker(selection: $viewModel.selectedCurrency,
-                           label: Text(viewModel.selectedCurrency.name)) {
-                        
-                        ForEach(viewModel.currencies, id: \.name) {
-                            Text($0.name).tag($0)
-                        }
-                    }
-                    .tint(Color(.label))
-                    .onChange(of: viewModel.selectedCurrency) { newValue in
-                        Task {
-                            await viewModel.loadCurrencyQuotes()
-                        }
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-                
-                Spacer(minLength: 30)
-                
-                List(viewModel.currencyQuotes) { currency in
-                    HStack(alignment: .center) {
-                        Text(currency.code)
+        ZStack {
+            NavigationStack {
+                VStack {
+                    
+                    HStack {
+                        Text("Moeda:")
                             .fontWeight(.bold)
-                        
-                        Spacer()
-                        
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(currency.name)
-                            Text(currency.quote, format: .currency(code: currency.codeIn))
-                            Text(DateFormatter.format(date: currency.quoteDate))
+                        Picker(selection: $viewModel.selectedCurrency,
+                               label: Text(viewModel.selectedCurrency.name)) {
+                            
+                            ForEach(viewModel.currencies, id: \.name) {
+                                Text($0.name).tag($0)
+                            }
                         }
-                        .frame(width: 170, alignment: .leading)
+                        .tint(Color(.label))
+                        .onChange(of: viewModel.selectedCurrency) { newValue in
+                            Task {
+                                await viewModel.loadCurrencyQuotes()
+                            }
+                        }
                     }
-                }
-                .listStyle(.plain)
-                .refreshable {
-                    print("refreshing")
-                }
-                
-            }.navigationTitle("Cotações")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                    
+                    Spacer(minLength: 30)
+                    
+                    List(viewModel.currencyQuotes) { currency in
+                        HStack(alignment: .center) {
+                            Text(currency.code)
+                                .fontWeight(.bold)
+                            
+                            Spacer()
+                            
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(currency.name)
+                                Text(currency.quote, format: .currency(code: currency.codeIn))
+                                Text(DateFormatter.format(date: currency.quoteDate))
+                            }
+                            .frame(width: 170, alignment: .leading)
+                        }
+                    }
+                    .listStyle(.plain)
+                    .refreshable {
+                        print("refreshing")
+                    }
+                    
+                }.navigationTitle("Cotações")
+            }
+            
+            if viewModel.isLoading {
+                LoadingView()
+            }
         }
         .onAppear {
             Task {

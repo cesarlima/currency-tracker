@@ -9,6 +9,7 @@ import SwiftUI
 import CurrencyTrackerCore
 
 final class CurrencyQuoteViewModel: ObservableObject {
+    @Published private(set) var isLoading = false
     @Published var selectedCurrency: Currency = Currency(code: "BRL", name: "Real")
     @Published private(set) var currencyQuotes: [CurrencyQuote] = []
     
@@ -27,6 +28,9 @@ final class CurrencyQuoteViewModel: ObservableObject {
     
     @MainActor
     func loadCurrencyQuotes() async {
+        defer { isLoading = false }
+        
+        isLoading = true
         do {
             currencyQuotes = try await currencyQuoteLoadUseCase.load(toCurrency: selectedCurrency.code,
                                                                      from: currencies)
