@@ -41,6 +41,7 @@
 		8E9F3CEE2B9E302100B1EC8A /* CurrencyTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9F3BBF2B99E4BF00B1EC8A /* CurrencyTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */; };
 		8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */; };
+		8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		8E9F3CD62B9E2FBD00B1EC8A /* CurrencyTrackerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTrackerAppTests.swift; sourceTree = "<group>"; };
 		8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComposer.swift; sourceTree = "<group>"; };
 		8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteViewModel.swift; sourceTree = "<group>"; };
+		8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +274,7 @@
 		8E9F3CC42B9E2FBC00B1EC8A /* CurrencyTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				8EFFB4242B9E96CD00B7C9C7 /* Extensions */,
 				8EFFB4202B9E74FE00B7C9C7 /* Features */,
 				8E9F3CF22B9E728900B1EC8A /* App Composition */,
 				8E9F3CC52B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift */,
@@ -320,6 +323,14 @@
 				8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */,
 			);
 			path = "Currency Quotes";
+			sourceTree = "<group>";
+		};
+		8EFFB4242B9E96CD00B7C9C7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -534,6 +545,7 @@
 				8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */,
 				8E9F3CC82B9E2FBC00B1EC8A /* CurrencyQuoteView.swift in Sources */,
 				8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */,
+				8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
