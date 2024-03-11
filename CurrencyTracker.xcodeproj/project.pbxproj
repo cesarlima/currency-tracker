@@ -47,6 +47,7 @@
 		8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42D2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift */; };
 		8EFFB4302B9F38E000B7C9C7 /* CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42F2B9F38E000B7C9C7 /* CurrencyPicker.swift */; };
 		8EFFB4322B9F4D9100B7C9C7 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */; };
+		8EFFB4352B9F54F200B7C9C7 /* CurrencyConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4342B9F54F200B7C9C7 /* CurrencyConverterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		8EFFB42D2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteCell.swift; sourceTree = "<group>"; };
 		8EFFB42F2B9F38E000B7C9C7 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
 		8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		8EFFB4342B9F54F200B7C9C7 /* CurrencyConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +325,7 @@
 		8EFFB4202B9E74FE00B7C9C7 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				8EFFB4332B9F54E000B7C9C7 /* Currency Converter */,
 				8EFFB4212B9E751100B7C9C7 /* Currency Quotes */,
 			);
 			path = Features;
@@ -354,6 +357,14 @@
 				8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */,
 			);
 			path = "UI Components";
+			sourceTree = "<group>";
+		};
+		8EFFB4332B9F54E000B7C9C7 /* Currency Converter */ = {
+			isa = PBXGroup;
+			children = (
+				8EFFB4342B9F54F200B7C9C7 /* CurrencyConverterView.swift */,
+			);
+			path = "Currency Converter";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -567,6 +578,7 @@
 			files = (
 				8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */,
 				8E9F3CC82B9E2FBC00B1EC8A /* CurrencyQuoteView.swift in Sources */,
+				8EFFB4352B9F54F200B7C9C7 /* CurrencyConverterView.swift in Sources */,
 				8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */,
 				8EFFB4322B9F4D9100B7C9C7 /* AlertItem.swift in Sources */,
 				8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */,

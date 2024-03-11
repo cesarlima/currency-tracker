@@ -1,0 +1,118 @@
+//
+//  CurrencyConverterView.swift
+//  CurrencyTrackerApp
+//
+//  Created by MacPro on 11/03/24.
+//
+
+import SwiftUI
+import CurrencyTrackerCore
+
+struct CurrencyConverterView: View {
+    @State var fromAmount: Double = 100
+    @State var fromSelectedCurrency = Currency(code: "BRL", name: "Real")
+    
+    @State var toAmount: Double = 100
+    @State var toSelectedCurrency = Currency(code: "USD", name: "Dólar")
+    
+    let currencies: [Currency] = [
+        Currency(code: "BRL", name: "Real"),
+        Currency(code: "USD", name: "Dólar"),
+        Currency(code: "EUR", name: "Euro"),
+        Currency(code: "GBP", name: "Libra Esterlina"),
+        Currency(code: "CNY", name: "Yuan Chinês"),
+        Currency(code: "BTC", name: "Bitcoin"),
+        Currency(code: "LTC", name: "Litecoin"),
+        Currency(code: "ETH", name: "Ethereum")
+    ]
+    
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        return formatter
+    }()
+    
+    var body: some View {
+        ZStack {
+            NavigationStack {
+                VStack {
+                    CurrencyView(from: $fromAmount,
+                                 selectedCurrency: $fromSelectedCurrency,
+                                 currencies: currencies)
+                    
+                    CurrencyView(from: $toAmount,
+                                 selectedCurrency: $toSelectedCurrency,
+                                 currencies: currencies)
+                    
+                    
+                    Spacer()
+                }
+                .navigationTitle("Calculadora")
+            }
+        }
+    }
+}
+
+struct CurrencyConverterView_Previews: PreviewProvider {
+    static var previews: some View {
+        CurrencyConverterView()
+    }
+}
+
+struct CurrencyView: View {
+    @Binding var from: Double
+    @Binding var selectedCurrency: Currency
+    let currencies: [Currency]
+    
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        return formatter
+    }()
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 20)
+            .stroke(Color.gray, lineWidth: 0.5)
+            .frame(maxWidth: .infinity, maxHeight: 70)
+            .padding(16)
+            .overlay(
+                VStack(alignment: .center, spacing:3) {
+                    
+                    HStack {
+                        Text(selectedCurrency.code)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 10)
+                            .font(.caption)
+
+                        Picker(selection: $selectedCurrency,
+                               label: Text(selectedCurrency.name)) {
+                            ForEach(currencies, id: \.name) {
+                                Text($0.name).tag($0)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .topTrailing)
+                        .tint(Color(.label))
+                        .pickerStyle(.menu)
+                    }
+                    
+                    HStack {
+                        Text(selectedCurrency.code)
+                            .font(.title2)
+                        
+                        TextField("",
+                                  value: $from,
+                                  formatter: formatter)
+                            .font(.title2)
+                            .keyboardType(.decimalPad)
+                    }.padding(.leading, 10)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(30)
+                
+            )
+    }
+}
