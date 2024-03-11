@@ -10,7 +10,7 @@ import SwiftUI
 struct ActivityIndicator: UIViewRepresentable {
     func makeUIView(context: Context) -> UIActivityIndicatorView {
         let view = UIActivityIndicatorView(style: .large)
-        view.color = .darkGray
+        view.color = UIColor(named: "brandPrimary")
         view.startAnimating()
         return view
     }
