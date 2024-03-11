@@ -11,6 +11,7 @@ import CurrencyTrackerCore
 struct CurrencyQuoteView: View {
     @StateObject var viewModel: CurrencyQuoteViewModel
     
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -27,7 +28,9 @@ struct CurrencyQuoteView: View {
                     }
                     .tint(Color(.label))
                     .onChange(of: viewModel.selectedCurrency) { newValue in
-                        print(newValue)
+                        Task {
+                            await viewModel.loadCurrencyQuotes()
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
