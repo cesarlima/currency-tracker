@@ -23,7 +23,11 @@ final class CurrencyQuoteViewModel: ObservableObject {
         Currency(code: "BRL", name: "Real"),
         Currency(code: "USD", name: "Dólar"),
         Currency(code: "EUR", name: "Euro"),
-        Currency(code: "BTC", name: "Bitcoin")
+        Currency(code: "GBP", name: "Libra Esterlina"),
+        Currency(code: "CNY", name: "Yuan Chinês"),
+        Currency(code: "BTC", name: "Bitcoin"),
+        Currency(code: "LTC", name: "Litecoin"),
+        Currency(code: "ETH", name: "Ethereum")
     ]
     
     private let currencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol
