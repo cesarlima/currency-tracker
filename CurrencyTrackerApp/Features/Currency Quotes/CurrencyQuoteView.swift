@@ -40,24 +40,9 @@ struct CurrencyQuoteView: View {
                     Spacer(minLength: 30)
                     
                     List(viewModel.currencyQuotes) { currency in
-                        HStack(alignment: .center) {
-                            Text(currency.code)
-                                .fontWeight(.bold)
-                            
-                            Spacer()
-                            
-                            VStack(alignment: .leading, spacing: 6) {
-                                Text(currency.name)
-                                Text(currency.quote, format: .currency(code: currency.codeIn))
-                                Text(DateFormatter.format(date: currency.quoteDate))
-                            }
-                            .frame(width: 170, alignment: .leading)
-                        }
+                        CurrencyQuoteCell(currencyQuote: currency)
                     }
                     .listStyle(.plain)
-                    .refreshable {
-                        print("refreshing")
-                    }
                     
                 }.navigationTitle("Cotações")
             }
