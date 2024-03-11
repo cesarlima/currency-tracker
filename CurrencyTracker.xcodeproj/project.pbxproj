@@ -46,6 +46,7 @@
 		8EFFB42C2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42B2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift */; };
 		8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42D2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift */; };
 		8EFFB4302B9F38E000B7C9C7 /* CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB42F2B9F38E000B7C9C7 /* CurrencyPicker.swift */; };
+		8EFFB4322B9F4D9100B7C9C7 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		8EFFB42B2B9E9DF800B7C9C7 /* CurrencyTrackerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTrackerTabView.swift; sourceTree = "<group>"; };
 		8EFFB42D2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteCell.swift; sourceTree = "<group>"; };
 		8EFFB42F2B9F38E000B7C9C7 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
+		8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */,
+				8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */,
 				8E9F3CC82B9E2FBC00B1EC8A /* CurrencyQuoteView.swift in Sources */,
 				8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */,
+				8EFFB4322B9F4D9100B7C9C7 /* AlertItem.swift in Sources */,
 				8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */,
 				8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
