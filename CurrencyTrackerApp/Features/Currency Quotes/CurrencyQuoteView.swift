@@ -30,6 +30,11 @@ struct CurrencyQuoteView: View {
                         CurrencyQuoteCell(currencyQuote: currency)
                     }
                     .listStyle(.plain)
+                    .refreshable {
+                        Task {
+                            await viewModel.loadCurrencyQuotes()
+                        }
+                    }
                     
                 }.navigationTitle("Cotações")
             }
