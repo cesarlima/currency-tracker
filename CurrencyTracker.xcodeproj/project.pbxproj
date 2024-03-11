@@ -42,6 +42,7 @@
 		8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */; };
 		8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */; };
 		8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */; };
+		8EFFB4292B9E9A4500B7C9C7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComposer.swift; sourceTree = "<group>"; };
 		8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteViewModel.swift; sourceTree = "<group>"; };
 		8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 		8E9F3CC42B9E2FBC00B1EC8A /* CurrencyTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				8EFFB4272B9E99EC00B7C9C7 /* UI Components */,
 				8EFFB4242B9E96CD00B7C9C7 /* Extensions */,
 				8EFFB4202B9E74FE00B7C9C7 /* Features */,
 				8E9F3CF22B9E728900B1EC8A /* App Composition */,
@@ -331,6 +334,14 @@
 				8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8EFFB4272B9E99EC00B7C9C7 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */,
+			);
+			path = "UI Components";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,6 +558,7 @@
 				8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */,
 				8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
+				8EFFB4292B9E9A4500B7C9C7 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
