@@ -35,7 +35,15 @@ extension CurrencyQuote {
             return nil
         }
         
-        self.init(name: name, code: code, codeIn: codeIn, quote: quote, quoteDate: quoteDate)
+        self.init(name: Self.removeToCurrencyName(name),
+                  code: code,
+                  codeIn: codeIn,
+                  quote: quote,
+                  quoteDate: quoteDate)
+    }
+    
+    private static func removeToCurrencyName(_ name: String) -> String {
+        return name.components(separatedBy: "/").first ?? name
     }
 }
 
