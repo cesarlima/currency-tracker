@@ -9,9 +9,17 @@ import Foundation
 import CurrencyTrackerCore
 
 enum MockData {
-    static let currencySample = Currency(code: "BRL", name: "Real")
+    static let currencySample = Currency(code: "", name: "")
+    
+    static let currenciesOringi: [Currency] = [
+        Currency(code: "", name: ""),
+        Currency(code: "BRL", name: "Real"),
+        Currency(code: "USD", name: "Dólar"),
+        Currency(code: "EUR", name: "Euro"),
+    ]
     
     static let currencies: [Currency] = [
+        Currency(code: "", name: ""),
         Currency(code: "BRL", name: "Real"),
         Currency(code: "USD", name: "Dólar"),
         Currency(code: "EUR", name: "Euro"),
