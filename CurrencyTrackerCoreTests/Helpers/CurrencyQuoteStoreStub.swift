@@ -14,11 +14,13 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
         case deleteCachedCurrencyQuote(String)
         case retrieve
         case insert([CurrencyQuote])
+        case retrieveById(String)
     }
     
     private var deletionResult: Result<Void, Error>?
     private var insertionResult: Result<Void, Error>?
     private var retrievalResult: Result<[CurrencyQuote]?, Error>?
+    private var findByIdResult: Result<CurrencyQuote?, Error>?
     
     private(set) var receivedMessages: [ReceivedMessage] = []
     
@@ -64,5 +66,14 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
     
     func completeRetrievalWithEmptyCache() {
         retrievalResult = .success(.none)
+    }
+    
+    func retrieveById(id: String) async throws -> CurrencyQuote? {
+        receivedMessages.append(.retrieveById(id))
+        return try findByIdResult?.get()
+    }
+    
+    func completeFindById(with currencyQuote: CurrencyQuote) {
+        findByIdResult = .success(currencyQuote)
     }
 }

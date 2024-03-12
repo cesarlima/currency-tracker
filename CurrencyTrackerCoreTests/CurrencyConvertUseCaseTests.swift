@@ -9,13 +9,22 @@ import XCTest
 import CurrencyTrackerCore
 
 final class CurrencyConvertUseCase {
+    private let currencyQuteCache: CurrencyQuoteStoreStub
     
     enum Error: Swift.Error {
         case exchangeRateNotFound
     }
     
-    func convert(from currency: Currency, toCurrency: Currency) async throws {
-        throw Error.exchangeRateNotFound
+    init(currencyQuteCache: CurrencyQuoteStoreStub) {
+        self.currencyQuteCache = currencyQuteCache
+    }
+    
+    func convert(from currency: Currency, toCurrency: Currency, amount: Double) async throws -> Double {
+        guard let currencyQuote = try? await currencyQuteCache.retrieveById(id: "") else {
+            throw Error.exchangeRateNotFound
+        }
+        
+        return  currencyQuote.quote * amount
     }
 }
 
@@ -25,11 +34,11 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
         let (sut, _) = makeSUT()
         let brl = Currency(code: "BRL", name: "Real")
         let usd = Currency(code: "USD", name: "Dólar")
-        var expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
+        let expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
         var receivedError: CurrencyConvertUseCase.Error?
         
         do {
-            _ = try await sut.convert(from: usd, toCurrency: brl)
+            _ = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
         } catch {
             receivedError = error as? CurrencyConvertUseCase.Error
         }
@@ -41,16 +50,36 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
         let (sut, _) = makeSUT()
         let brl = Currency(code: "BRL", name: "Real")
         let usd = Currency(code: "USD", name: "Dólar")
-        var expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
+        let expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
         var receivedError: CurrencyConvertUseCase.Error?
         
         do {
-            _ = try await sut.convert(from: usd, toCurrency: brl)
+            _ = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
         } catch {
             receivedError = error as? CurrencyConvertUseCase.Error
         }
         
         XCTAssertEqual(expecteError, receivedError)
+    }
+    
+    func test_convert_deliversConvertedValueCorreclty() async {
+        let (sut, cache) = makeSUT()
+        let brl = Currency(code: "BRL", name: "Real")
+        let usd = Currency(code: "USD", name: "Dólar")
+        let amout = 100.0
+        let currencyQuote = CurrencyQuote(name: "Dólar Americano/Real Brasileiro",
+                                          code: "USD",
+                                          codeIn: "BRL",
+                                          quote: 4.98,
+                                          quoteDate: Date())
+        cache.completeFindById(with: currencyQuote)
+        
+        do {
+            let receivedAmount = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
+            XCTAssertEqual(currencyQuote.quote * amout, receivedAmount)
+        } catch {
+            XCTFail("Expected no error but got \(error) instead.")
+        }
     }
     
     // MARK: - Helpers
