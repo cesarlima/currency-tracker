@@ -20,11 +20,16 @@ final class CurrencyConvertUseCase {
     }
     
     func convert(from currency: Currency, toCurrency: Currency, amount: Double) async throws -> Double {
-        guard let currencyQuote = try? await currencyQuteCache.retrieveById(id: "") else {
+        let currencyQuoteId = makeCurrencyQuoteID(from: currency, toCurrency: toCurrency)
+        guard let currencyQuote = try? await currencyQuteCache.retrieveById(id: currencyQuoteId) else {
             throw Error.exchangeRateNotFound
         }
         
         return  currencyQuote.quote * amount
+    }
+    
+    private func makeCurrencyQuoteID(from currency: Currency, toCurrency: Currency) -> String {
+        return "\(currency.code)\(toCurrency.code)"
     }
 }
 
@@ -61,6 +66,26 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
         do {
             let receivedAmount = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
             XCTAssertEqual(currencyQuote.quote * amout, receivedAmount)
+        } catch {
+            XCTFail("Expected no error but got \(error) instead.")
+        }
+    }
+    
+    func test_convert_requestesCacheWithCorrectId() async {
+        let (sut, cache) = makeSUT()
+        let brl = Currency(code: "BRL", name: "Real")
+        let usd = Currency(code: "USD", name: "Dólar")
+        let expectedID = "\(usd.code)\(brl.code)"
+        let currencyQuote = CurrencyQuote(name: "Dólar Americano/Real Brasileiro",
+                                          code: "USD",
+                                          codeIn: "BRL",
+                                          quote: 4.98,
+                                          quoteDate: Date())
+        cache.completeFindById(with: currencyQuote)
+        
+        do {
+            _ = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
+            XCTAssertEqual(cache.receivedMessages, [.retrieveById(expectedID)])
         } catch {
             XCTFail("Expected no error but got \(error) instead.")
         }
