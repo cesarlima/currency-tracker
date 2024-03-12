@@ -12,6 +12,7 @@ struct CurrencyView: View {
     @Binding var from: Double
     @Binding var selectedCurrency: Currency
     let currencies: [Currency]
+    let editable: Bool
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -20,6 +21,7 @@ struct CurrencyView: View {
         formatter.minimumFractionDigits = 2
         return formatter
     }()
+
     
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
@@ -55,11 +57,13 @@ struct CurrencyView: View {
                                   formatter: formatter)
                             .font(.title2)
                             .keyboardType(.decimalPad)
+                            .disabled(!editable)
+                            
+                            
                     }.padding(.leading, 10)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(30)
-                
             )
     }
 }
@@ -68,6 +72,7 @@ struct CurrencyView_Previews: PreviewProvider {
     static var previews: some View {
         CurrencyView(from: .constant(100),
                      selectedCurrency: .constant(MockData.currencySample),
-                     currencies: MockData.currencies)
+                     currencies: MockData.currencies,
+                     editable: true)
     }
 }
