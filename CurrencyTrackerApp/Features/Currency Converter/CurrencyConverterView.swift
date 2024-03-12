@@ -37,6 +37,11 @@ struct CurrencyConverterView: View {
                         .padding([.leading, .trailing], 60)
                     
                     Spacer()
+                    
+                    StandardPrimaryButton(title: "Converter") {
+                        
+                    }
+                    .padding(.bottom, 16)
                 }
                 .navigationTitle("Calculadora")
             }
@@ -47,5 +52,23 @@ struct CurrencyConverterView: View {
 struct CurrencyConverterView_Previews: PreviewProvider {
     static var previews: some View {
         CurrencyConverterView()
+    }
+}
+
+struct StandardPrimaryButton: View {
+    let title: LocalizedStringKey
+    let action: () -> Void
+    
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            Text(title)
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.bordered)
+        .tint(Color("brandPrimary"))
+        .controlSize(.large)
+        .padding(16)
     }
 }
