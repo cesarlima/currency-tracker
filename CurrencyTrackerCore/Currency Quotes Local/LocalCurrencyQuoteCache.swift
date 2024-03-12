@@ -24,4 +24,8 @@ public final class LocalCurrencyQuoteCache: CurrencyQuoteCache {
     public func load(codeIn: String) async throws -> [CurrencyQuote] {
         return try await store.retrieveWhereCodeInEquals(codeIn) ?? []
     }
+    
+    public func retrieveById(id: String) async throws -> CurrencyQuote? {
+        return try await store.retrieveById(id: id)
+    }
 }

@@ -10,4 +10,5 @@ import Foundation
 public protocol CurrencyQuoteCache {
     func save(quotes: [CurrencyQuote]) async throws
     func load(codeIn: String) async throws -> [CurrencyQuote]
+    func retrieveById(id: String) async throws -> CurrencyQuote?
 }

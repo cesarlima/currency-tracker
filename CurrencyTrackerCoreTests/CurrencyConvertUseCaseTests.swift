@@ -8,31 +8,6 @@
 import XCTest
 import CurrencyTrackerCore
 
-final class CurrencyConvertUseCase {
-    private let currencyQuteCache: CurrencyQuoteStoreStub
-    
-    enum Error: Swift.Error {
-        case exchangeRateNotFound
-    }
-    
-    init(currencyQuteCache: CurrencyQuoteStoreStub) {
-        self.currencyQuteCache = currencyQuteCache
-    }
-    
-    func convert(from currency: Currency, toCurrency: Currency, amount: Double) async throws -> Double {
-        let currencyQuoteId = makeCurrencyQuoteID(from: currency, toCurrency: toCurrency)
-        guard let currencyQuote = try? await currencyQuteCache.retrieveById(id: currencyQuoteId) else {
-            throw Error.exchangeRateNotFound
-        }
-        
-        return  currencyQuote.quote * amount
-    }
-    
-    private func makeCurrencyQuoteID(from currency: Currency, toCurrency: Currency) -> String {
-        return "\(currency.code)\(toCurrency.code)"
-    }
-}
-
 final class CurrencyConvertUseCaseTests: XCTestCase {
     
     func test_convert_deliversErrorOnExchangeRateLoadingOperationCompletesWithError() async {
@@ -82,10 +57,11 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: CurrencyConvertUseCase, cache: CurrencyQuoteStoreStub) {
-        let cache = CurrencyQuoteStoreStub()
+        let store = CurrencyQuoteStoreStub()
+        let cache = LocalCurrencyQuoteCache(store: store)
         let sut = CurrencyConvertUseCase(currencyQuteCache: cache)
         
-        return (sut, cache)
+        return (sut, store)
     }
     
     private func expect(_ sut: CurrencyConvertUseCase,
