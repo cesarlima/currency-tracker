@@ -22,14 +22,14 @@ final class CurrencyConvertUseCase {
 final class CurrencyConvertUseCaseTests: XCTestCase {
     
     func test_convert_deliversErrorOnExchangeRateLoadingOperationCompletesWithError() async {
-        let sut = CurrencyConvertUseCase()
+        let (sut, _) = makeSUT()
         let brl = Currency(code: "BRL", name: "Real")
         let usd = Currency(code: "USD", name: "Dólar")
         var expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
         var receivedError: CurrencyConvertUseCase.Error?
         
         do {
-            try await sut.convert(from: usd, toCurrency: brl)
+            _ = try await sut.convert(from: usd, toCurrency: brl)
         } catch {
             receivedError = error as? CurrencyConvertUseCase.Error
         }
@@ -38,19 +38,28 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
     }
 
     func test_convert_deliversErrorOnExchangeRateLoadingOperationCompletesEmpty() async {
-        let sut = CurrencyConvertUseCase()
+        let (sut, _) = makeSUT()
         let brl = Currency(code: "BRL", name: "Real")
         let usd = Currency(code: "USD", name: "Dólar")
         var expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
         var receivedError: CurrencyConvertUseCase.Error?
         
         do {
-            try await sut.convert(from: usd, toCurrency: brl)
+            _ = try await sut.convert(from: usd, toCurrency: brl)
         } catch {
             receivedError = error as? CurrencyConvertUseCase.Error
         }
         
         XCTAssertEqual(expecteError, receivedError)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: CurrencyConvertUseCase, cache: CurrencyQuoteStoreStub) {
+        let cache = CurrencyQuoteStoreStub()
+        let sut = CurrencyConvertUseCase(currencyQuteCache: cache)
+        
+        return (sut, cache)
     }
 }
 
