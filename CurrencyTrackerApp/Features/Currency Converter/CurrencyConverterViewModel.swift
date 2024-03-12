@@ -33,19 +33,8 @@ final class CurrencyConverterViewModel: ObservableObject {
     init(useCase: CurrencyConvertUseCase) {
         self.useCase = useCase
         
-        $fromCurrencyAmount
-            .debounce(for: .seconds(1), scheduler: RunLoop.main)
-            .sink { [weak self] newValue in
-                guard let value = Formatter.fromBRLFormatedCurrency(newValue) else { return }
-                self?.fromCurrencyAmount = Formatter.toBRLFormatedCurrency(value)
-            }
-            .store(in: &cancellables)
-        
-        $fromCurrency
-            .sink { [weak self] _ in
-                self?.toCurrencyAmount = ""
-            }
-            .store(in: &cancellables)
+        formatFromCurrencyAmount()
+        cleanToCurrencyAmountOnFromCurrencyChanges()
     }
     
     @MainActor
@@ -60,6 +49,7 @@ final class CurrencyConverterViewModel: ObservableObject {
                 let result = try await useCase.convert(from: fromCurrency,
                                                        toCurrency: toCurrency,
                                                        amount: value)
+                
                 toCurrencyAmount = Formatter.toBRLFormatedCurrency(result)
             } catch {
                 guard let _ = error as? CurrencyConvertUseCase.Error else {
@@ -70,5 +60,23 @@ final class CurrencyConverterViewModel: ObservableObject {
                 alertItem = AlertContext.exchangeRateNotFound
             }
         }
+    }
+    
+    private func cleanToCurrencyAmountOnFromCurrencyChanges() {
+        $fromCurrency
+            .sink { [weak self] _ in
+                self?.toCurrencyAmount = ""
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func formatFromCurrencyAmount() {
+        $fromCurrencyAmount
+            .debounce(for: .seconds(1), scheduler: RunLoop.main)
+            .sink { [weak self] newValue in
+                guard let value = Formatter.fromBRLFormatedCurrency(newValue) else { return }
+                self?.fromCurrencyAmount = Formatter.toBRLFormatedCurrency(value)
+            }
+            .store(in: &cancellables)
     }
 }
