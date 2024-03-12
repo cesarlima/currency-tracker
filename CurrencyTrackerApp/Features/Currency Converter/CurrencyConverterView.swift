@@ -39,9 +39,11 @@ struct CurrencyConverterView: View {
                     Spacer()
                     
                     StandardPrimaryButton(title: "Converter") {
-                        
+                        viewModel.convert()
                     }
                     .padding(.bottom, 16)
+                    .disabled(viewModel.isConvertButtonDisabled)
+        
                 }
                 .navigationTitle("Calculadora")
             }
@@ -49,8 +51,8 @@ struct CurrencyConverterView: View {
     }
 }
 
-struct CurrencyConverterView_Previews: PreviewProvider {
-    static var previews: some View {
-        CurrencyConverterView()
-    }
-}
+//struct CurrencyConverterView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CurrencyConverterView()
+//    }
+//}

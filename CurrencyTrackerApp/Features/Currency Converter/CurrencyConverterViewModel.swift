@@ -18,15 +18,37 @@ final class CurrencyConverterViewModel: ObservableObject {
     private let useCase: CurrencyConvertUseCase
     private var cancellables = Set<AnyCancellable>()
     
+    var isConvertButtonDisabled: Bool {
+        return fromCurrency.code.isEmpty
+        || toCurrency.code.isEmpty
+        || fromCurrencyAmount.isEmpty
+    }
+    
     init(useCase: CurrencyConvertUseCase) {
         self.useCase = useCase
         
         $fromCurrencyAmount
-            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .debounce(for: .seconds(1), scheduler: RunLoop.main)
             .sink { [weak self] newValue in
                 guard let value = Formatter.fromBRLFormatedCurrency(newValue) else { return }
                 self?.fromCurrencyAmount = Formatter.toBRLFormatedCurrency(value)
             }
             .store(in: &cancellables)
+    }
+    
+    @MainActor
+    func convert() {
+        guard let value = Formatter.fromBRLFormatedCurrency(fromCurrencyAmount) else { return }
+        
+        Task {
+            do {
+                let result = try await useCase.convert(from: fromCurrency,
+                                                       toCurrency: toCurrency,
+                                                       amount: value)
+                toCurrencyAmount = Formatter.toBRLFormatedCurrency(result)
+            } catch{
+                
+            }
+        }
     }
 }
