@@ -37,6 +37,21 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
         XCTAssertEqual(expecteError, receivedError)
     }
 
+    func test_convert_deliversErrorOnExchangeRateLoadingOperationCompletesEmpty() async {
+        let sut = CurrencyConvertUseCase()
+        let brl = Currency(code: "BRL", name: "Real")
+        let usd = Currency(code: "USD", name: "Dólar")
+        var expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
+        var receivedError: CurrencyConvertUseCase.Error?
+        
+        do {
+            try await sut.convert(from: usd, toCurrency: brl)
+        } catch {
+            receivedError = error as? CurrencyConvertUseCase.Error
+        }
+        
+        XCTAssertEqual(expecteError, receivedError)
+    }
 }
 
 private func makeCurrenciesModel() -> [Currency] {
