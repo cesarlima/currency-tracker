@@ -47,6 +47,13 @@ struct CurrencyConverterView: View {
                 }
                 .navigationTitle("Calculadora")
             }
+            .alert(viewModel.alertItem?.title ?? Text("Oops"),
+                   isPresented: $viewModel.isShowingAlert,
+                   presenting: viewModel.alertItem) { details in
+                Button(details.buttonTitle) { }
+            } message: { details in
+                details.message
+            }
         }
     }
 }

@@ -14,6 +14,12 @@ final class CurrencyConverterViewModel: ObservableObject {
     @Published var fromCurrency: Currency = Currency(code: "USD", name: "Dólar")
     @Published var toCurrencyAmount: String = ""
     @Published var toCurrency: Currency = Currency(code: "BRL", name: "Real")
+    @Published var isShowingAlert = false
+    private(set) var alertItem: AlertItem? {
+        didSet {
+            isShowingAlert = true
+        }
+    }
     
     private let useCase: CurrencyConvertUseCase
     private var cancellables = Set<AnyCancellable>()
@@ -38,7 +44,10 @@ final class CurrencyConverterViewModel: ObservableObject {
     
     @MainActor
     func convert() {
-        guard let value = Formatter.fromBRLFormatedCurrency(fromCurrencyAmount) else { return }
+        guard let value = Formatter.fromBRLFormatedCurrency(fromCurrencyAmount) else {
+            alertItem = AlertContext.invalidAmount
+            return
+        }
         
         Task {
             do {
@@ -46,7 +55,7 @@ final class CurrencyConverterViewModel: ObservableObject {
                                                        toCurrency: toCurrency,
                                                        amount: value)
                 toCurrencyAmount = Formatter.toBRLFormatedCurrency(result)
-            } catch{
+            } catch {
                 
             }
         }
