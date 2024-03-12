@@ -10,12 +10,6 @@ import CurrencyTrackerCore
 
 struct CurrencyConverterView: View {
     @FocusState private var currentCurrencyFocused: Bool
-    
-    @State var fromSelectedCurrency = Currency(code: "", name: "")
-    
-    @State var toAmount: String = ""
-    @State var toSelectedCurrency = Currency(code: "", name: "")
-    
     let currencies: [Currency] = MockData.currencies
     
     @StateObject var viewModel: CurrencyConverterViewModel = CurrencyConverterViewModel()
@@ -24,18 +18,18 @@ struct CurrencyConverterView: View {
         ZStack {
             NavigationStack {
                 VStack {
-                    CurrencyView(amount: $viewModel.amount,
-                                 selectedCurrency: $fromSelectedCurrency,
+                    CurrencyView(amount: $viewModel.fromCurrencyAmount,
+                                 selectedCurrency: $viewModel.fromCurrency,
                                  currencies: MockData.currenciesOringi,
                                  editable: true)
                     .focused($currentCurrencyFocused)
                     
-                    CurrencyView(amount: $toAmount,
-                                 selectedCurrency: $toSelectedCurrency,
+                    CurrencyView(amount: $viewModel.toCurrencyAmount,
+                                 selectedCurrency: $viewModel.toCurrency,
                                  currencies: currencies,
                                  editable: false)
                     
-                    Text("A última atualização da cotação de \(fromSelectedCurrency.name) para \(toSelectedCurrency.name) foi em 11/03/2024 15:00")
+                    Text("A última atualização da cotação de \(viewModel.fromCurrency.name) para \(viewModel.toCurrency.name) foi em 11/03/2024 15:00")
                         .font(.caption)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.secondary)

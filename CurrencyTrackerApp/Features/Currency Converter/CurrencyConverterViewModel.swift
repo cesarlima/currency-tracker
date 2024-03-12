@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import CurrencyTrackerCore
 
 final class CurrencyConverterViewModel: ObservableObject {
     let formatter: NumberFormatter = {
@@ -16,16 +17,29 @@ final class CurrencyConverterViewModel: ObservableObject {
         return formatter
     }()
     
-    @Published var amount: String = ""
+    @Published var fromCurrencyAmount: String = ""
+    @Published var fromCurrency: Currency = Currency(code: "", name: "")
+    @Published var toCurrencyAmount: String = ""
+    @Published var toCurrency: Currency = Currency(code: "", name: "")
     
     private var cancellables = Set<AnyCancellable>()
+    
     init() {
-        $amount
-            .debounce(for: 0.7, scheduler: RunLoop.main)
+        $fromCurrencyAmount
+            .debounce(for: .seconds(1), scheduler: RunLoop.main)
             .sink { [weak self] newValue in
                 guard let value = Double(newValue) else { return }
                 let currencyAmmount = self?.formatter.string(from: NSNumber(value: value)) ?? ""
-                self?.amount = currencyAmmount.replacingOccurrences(of: "R$", with: "").trimmingCharacters(in: .whitespaces)
+                self?.fromCurrencyAmount = currencyAmmount.replacingOccurrences(of: "R$", with: "").trimmingCharacters(in: .whitespaces)
+            }
+            .store(in: &cancellables)
+        
+        $toCurrencyAmount
+            .debounce(for: .seconds(1), scheduler: RunLoop.main)
+            .sink { [weak self] newValue in
+                guard let value = Double(newValue) else { return }
+                let currencyAmmount = self?.formatter.string(from: NSNumber(value: value)) ?? ""
+                self?.fromCurrencyAmount = currencyAmmount.replacingOccurrences(of: "R$", with: "").trimmingCharacters(in: .whitespaces)
             }
             .store(in: &cancellables)
     }
