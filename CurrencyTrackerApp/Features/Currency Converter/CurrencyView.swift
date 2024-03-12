@@ -7,21 +7,13 @@
 
 import SwiftUI
 import CurrencyTrackerCore
+import Combine
 
 struct CurrencyView: View {
-    @Binding var from: Double
+    @Binding var amount: String
     @Binding var selectedCurrency: Currency
     let currencies: [Currency]
     let editable: Bool
-    
-    let formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 2
-        return formatter
-    }()
-
     
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
@@ -52,14 +44,10 @@ struct CurrencyView: View {
                         Text(selectedCurrency.code.currencySymbol)
                             .font(.title2)
                         
-                        TextField("",
-                                  value: $from,
-                                  formatter: formatter)
+                        TextField("", text: $amount)
                             .font(.title2)
                             .keyboardType(.decimalPad)
                             .disabled(!editable)
-                            
-                            
                     }.padding(.leading, 10)
                 }
                 .frame(maxWidth: .infinity)
@@ -70,7 +58,7 @@ struct CurrencyView: View {
 
 struct CurrencyView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrencyView(from: .constant(100),
+        CurrencyView(amount: .constant("1"),
                      selectedCurrency: .constant(MockData.currencySample),
                      currencies: MockData.currencies,
                      editable: true)
