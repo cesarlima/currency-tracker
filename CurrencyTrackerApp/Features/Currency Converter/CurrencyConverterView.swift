@@ -12,7 +12,7 @@ struct CurrencyConverterView: View {
     @FocusState private var currentCurrencyFocused: Bool
     let currencies: [Currency] = MockData.currencies
     
-    @StateObject var viewModel: CurrencyConverterViewModel = CurrencyConverterViewModel()
+    @StateObject var viewModel: CurrencyConverterViewModel
     
     var body: some View {
         ZStack {

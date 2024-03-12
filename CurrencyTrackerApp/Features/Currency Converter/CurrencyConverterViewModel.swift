@@ -15,9 +15,12 @@ final class CurrencyConverterViewModel: ObservableObject {
     @Published var toCurrencyAmount: String = ""
     @Published var toCurrency: Currency = Currency(code: "BRL", name: "Real")
     
+    private let useCase: CurrencyConvertUseCase
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(useCase: CurrencyConvertUseCase) {
+        self.useCase = useCase
+        
         $fromCurrencyAmount
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .sink { [weak self] newValue in

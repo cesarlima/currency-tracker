@@ -42,6 +42,14 @@ final class AppComposer {
   
         return CurrencyQuoteView(viewModel: viewModel)
     }
+    
+    func composeCurrencyConverterView() -> CurrencyConverterView {
+        let localQuoteCache = LocalCurrencyQuoteCache(store: store)
+        let useCase = CurrencyConvertUseCase(currencyQuteCache: localQuoteCache)
+        let viewModel = CurrencyConverterViewModel(useCase: useCase)
+        
+        return CurrencyConverterView(viewModel: viewModel)
+    }
 }
 
 final class NullStore: CurrencyQuoteStore {
