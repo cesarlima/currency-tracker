@@ -29,4 +29,6 @@ enum AlertContext {
 // MARK: - Currency Converter
 extension AlertContext {
     static let invalidAmount = AlertItem(message: "O valor digitado é inválido.")
+    static let exchangeRateNotFound = AlertItem(message: "Não foi possível carregar a cotação desejada.")
+    static let exchangeRateGenericError = AlertItem(message: "Não foi possível realizar a conversão.")
 }

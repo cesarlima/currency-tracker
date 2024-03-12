@@ -56,7 +56,12 @@ final class CurrencyConverterViewModel: ObservableObject {
                                                        amount: value)
                 toCurrencyAmount = Formatter.toBRLFormatedCurrency(result)
             } catch {
+                guard let _ = error as? CurrencyConvertUseCase.Error else {
+                    alertItem = AlertContext.exchangeRateGenericError
+                    return
+                }
                 
+                alertItem = AlertContext.exchangeRateNotFound
             }
         }
     }
