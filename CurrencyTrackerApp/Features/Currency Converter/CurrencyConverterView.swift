@@ -20,7 +20,7 @@ struct CurrencyConverterView: View {
                 VStack {
                     CurrencyView(amount: $viewModel.fromCurrencyAmount,
                                  selectedCurrency: $viewModel.fromCurrency,
-                                 currencies: MockData.currenciesOringi,
+                                 currencies: MockData.currencies,
                                  editable: true)
                     .focused($currentCurrencyFocused)
                     
@@ -46,6 +46,9 @@ struct CurrencyConverterView: View {
         
                 }
                 .navigationTitle("Calculadora")
+            }
+            .onAppear {
+                viewModel.convert()
             }
             .alert(viewModel.alertItem?.title ?? Text("Oops"),
                    isPresented: $viewModel.isShowingAlert,
