@@ -35,6 +35,12 @@ struct CurrencyConverterView: View {
                                  currencies: currencies,
                                  editable: false)
                     
+                    Text("A última atualização da cotação de \(fromSelectedCurrency.name) para \(toSelectedCurrency.name) foi em 11/03/2024 15:00")
+                        .font(.caption)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 32)
+                        .padding([.leading, .trailing], 60)
                     
                     Spacer()
                 }
