@@ -42,6 +42,7 @@
 		8ED9E67C2BA06655008023AC /* CurrencyConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9E67B2BA06655008023AC /* CurrencyConverterViewModel.swift */; };
 		8ED9E6832BA0AC25008023AC /* CurrencyConvertUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9E6822BA0AC25008023AC /* CurrencyConvertUseCaseTests.swift */; };
 		8ED9E6852BA0EA88008023AC /* CurrencyConvertUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9E6842BA0EA88008023AC /* CurrencyConvertUseCase.swift */; };
+		8ED9E6872BA0F6BB008023AC /* StandardPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9E6862BA0F6BB008023AC /* StandardPrimaryButton.swift */; };
 		8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */; };
 		8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */; };
 		8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */; };
@@ -131,6 +132,7 @@
 		8ED9E67B2BA06655008023AC /* CurrencyConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewModel.swift; sourceTree = "<group>"; };
 		8ED9E6822BA0AC25008023AC /* CurrencyConvertUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertUseCaseTests.swift; sourceTree = "<group>"; };
 		8ED9E6842BA0EA88008023AC /* CurrencyConvertUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertUseCase.swift; sourceTree = "<group>"; };
+		8ED9E6862BA0F6BB008023AC /* StandardPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardPrimaryButton.swift; sourceTree = "<group>"; };
 		8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComposer.swift; sourceTree = "<group>"; };
 		8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteViewModel.swift; sourceTree = "<group>"; };
 		8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			children = (
 				8EFFB4282B9E9A4500B7C9C7 /* LoadingView.swift */,
 				8EFFB4312B9F4D9100B7C9C7 /* AlertItem.swift */,
+				8ED9E6862BA0F6BB008023AC /* StandardPrimaryButton.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */,
 				8EFFB43D2B9F847C00B7C9C7 /* MockData.swift in Sources */,
 				8EFFB4322B9F4D9100B7C9C7 /* AlertItem.swift in Sources */,
+				8ED9E6872BA0F6BB008023AC /* StandardPrimaryButton.swift in Sources */,
 				8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */,
 				8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */,
 				8EFFB43A2B9F837600B7C9C7 /* CurrencyView.swift in Sources */,
