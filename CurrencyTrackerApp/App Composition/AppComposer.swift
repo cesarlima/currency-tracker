@@ -45,9 +45,14 @@ final class AppComposer {
 }
 
 final class NullStore: CurrencyQuoteStore {
+    
     func save(quotes: [CurrencyQuote]) async throws {}
 
     func deleteWhereCodeInEquals(_ codeIn: String) async throws {}
 
     func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyQuote]? { nil }
+    
+    func retrieveById(id: String) async throws -> CurrencyQuote? {
+        return nil
+    }
 }
