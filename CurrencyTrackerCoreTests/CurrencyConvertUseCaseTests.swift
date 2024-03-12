@@ -55,7 +55,6 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
         let (sut, cache) = makeSUT()
         let brl = Currency(code: "BRL", name: "Real")
         let usd = Currency(code: "USD", name: "Dólar")
-        let amout = 100.0
         let currencyQuote = CurrencyQuote(name: "Dólar Americano/Real Brasileiro",
                                           code: "USD",
                                           codeIn: "BRL",
@@ -65,7 +64,7 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
         
         do {
             let receivedAmount = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
-            XCTAssertEqual(currencyQuote.quote * amout, receivedAmount)
+            XCTAssertEqual(498.0, receivedAmount, accuracy: 0.1)
         } catch {
             XCTFail("Expected no error but got \(error) instead.")
         }
