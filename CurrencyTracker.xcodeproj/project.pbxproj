@@ -43,6 +43,7 @@
 		8ED9E6832BA0AC25008023AC /* CurrencyConvertUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9E6822BA0AC25008023AC /* CurrencyConvertUseCaseTests.swift */; };
 		8ED9E6852BA0EA88008023AC /* CurrencyConvertUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9E6842BA0EA88008023AC /* CurrencyConvertUseCase.swift */; };
 		8ED9E6872BA0F6BB008023AC /* StandardPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9E6862BA0F6BB008023AC /* StandardPrimaryButton.swift */; };
+		8ED9E6892BA0F709008023AC /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9E6882BA0F709008023AC /* Formatter.swift */; };
 		8EFFB41F2B9E741500B7C9C7 /* AppComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */; };
 		8EFFB4232B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */; };
 		8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */; };
@@ -133,6 +134,7 @@
 		8ED9E6822BA0AC25008023AC /* CurrencyConvertUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertUseCaseTests.swift; sourceTree = "<group>"; };
 		8ED9E6842BA0EA88008023AC /* CurrencyConvertUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertUseCase.swift; sourceTree = "<group>"; };
 		8ED9E6862BA0F6BB008023AC /* StandardPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardPrimaryButton.swift; sourceTree = "<group>"; };
+		8ED9E6882BA0F709008023AC /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		8EFFB41E2B9E741500B7C9C7 /* AppComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComposer.swift; sourceTree = "<group>"; };
 		8EFFB4222B9E760100B7C9C7 /* CurrencyQuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyQuoteViewModel.swift; sourceTree = "<group>"; };
 		8EFFB4252B9E96EA00B7C9C7 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 			children = (
 				8EFFB43B2B9F847300B7C9C7 /* Mock */,
 				8EFFB4372B9F81D500B7C9C7 /* CurrencySymbol.swift */,
+				8ED9E6882BA0F709008023AC /* Formatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				8EFFB42E2B9F334F00B7C9C7 /* CurrencyQuoteCell.swift in Sources */,
 				8EFFB4262B9E96EA00B7C9C7 /* DateFormatter+Extension.swift in Sources */,
 				8EFFB43A2B9F837600B7C9C7 /* CurrencyView.swift in Sources */,
+				8ED9E6892BA0F709008023AC /* Formatter.swift in Sources */,
 				8E9F3CC62B9E2FBC00B1EC8A /* CurrencyTrackerAppApp.swift in Sources */,
 				8EFFB4302B9F38E000B7C9C7 /* CurrencyPicker.swift in Sources */,
 				8EFFB4292B9E9A4500B7C9C7 /* LoadingView.swift in Sources */,
