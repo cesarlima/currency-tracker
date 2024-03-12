@@ -56,4 +56,14 @@ public final class CoreDataCurrencyQuoteStore: CurrencyQuoteStore {
         
         return managedQuotes.map { $0.toLocal() }
     }
+    
+    public func retrieveById(id: String) async throws -> CurrencyQuote? {
+        let context = context
+        
+        let managedQuote = try await context.perform({
+            try ManagedCurrencyQuote.findById(id, in: context)
+        })
+        
+        return managedQuote?.toLocal()
+    }
 }

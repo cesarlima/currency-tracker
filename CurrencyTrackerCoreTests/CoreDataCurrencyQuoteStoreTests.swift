@@ -86,6 +86,21 @@ final class CoreDataCurrencyQuoteStoreTests: XCTestCase {
         })
     }
     
+    func test_retrieveById_deliversCorrectFoundValue() async {
+        let sut = makeSUT()
+        
+        await performWithoutError({
+            let idToRetrieve = "USDBRL"
+            let currencyQuoteModels = makeCurrencies(codeIn: "BRL").models
+            let expectedResult = currencyQuoteModels.first { $0.id == idToRetrieve }!
+            try await sut.save(quotes: currencyQuoteModels)
+
+            let receivedResult = try await sut.retrieveById(id: idToRetrieve)
+            
+            XCTAssertEqual(expectedResult, receivedResult)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> CoreDataCurrencyQuoteStore {

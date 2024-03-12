@@ -37,6 +37,14 @@ public class ManagedCurrencyQuote: NSManagedObject {
         return try context.fetch(request)
     }
     
+    static func findById(_ id: String,
+                             in context: NSManagedObjectContext) throws -> ManagedCurrencyQuote? {
+        let request = NSFetchRequest<ManagedCurrencyQuote>(entityName: ManagedCurrencyQuote.entity().name!)
+        request.predicate = NSPredicate(format: "%K = %@",
+                                        argumentArray: [#keyPath(ManagedCurrencyQuote.id), id])
+        return try context.fetch(request).first
+    }
+    
     func toLocal() -> CurrencyQuote {
         return CurrencyQuote(name: name,
                              code: code,

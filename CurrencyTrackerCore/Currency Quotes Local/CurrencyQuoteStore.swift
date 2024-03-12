@@ -13,9 +13,3 @@ public protocol CurrencyQuoteStore {
     func retrieveWhereCodeInEquals(_ codeIn: String) async throws -> [CurrencyQuote]?
     func retrieveById(id: String) async throws -> CurrencyQuote?
 }
-
-public extension CurrencyQuoteStore {
-    func retrieveById(id: String) async throws -> CurrencyQuote? {
-        return nil
-    }
-}
