@@ -40,6 +40,12 @@ final class CurrencyConverterViewModel: ObservableObject {
                 self?.fromCurrencyAmount = Formatter.toBRLFormatedCurrency(value)
             }
             .store(in: &cancellables)
+        
+        $fromCurrency
+            .sink { [weak self] _ in
+                self?.toCurrencyAmount = ""
+            }
+            .store(in: &cancellables)
     }
     
     @MainActor
