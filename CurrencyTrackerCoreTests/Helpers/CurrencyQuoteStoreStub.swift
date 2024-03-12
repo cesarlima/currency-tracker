@@ -76,4 +76,12 @@ final class CurrencyQuoteStoreStub: CurrencyQuoteStore {
     func completeFindById(with currencyQuote: CurrencyQuote) {
         findByIdResult = .success(currencyQuote)
     }
+    
+    func completeFindById(with error: Error) {
+        findByIdResult = .failure(error)
+    }
+    
+    func completeFindByIdWithEmpty() {
+        findByIdResult = .success(.none)
+    }
 }

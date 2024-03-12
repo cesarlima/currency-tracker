@@ -31,35 +31,19 @@ final class CurrencyConvertUseCase {
 final class CurrencyConvertUseCaseTests: XCTestCase {
     
     func test_convert_deliversErrorOnExchangeRateLoadingOperationCompletesWithError() async {
-        let (sut, _) = makeSUT()
-        let brl = Currency(code: "BRL", name: "Real")
-        let usd = Currency(code: "USD", name: "Dólar")
-        let expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
-        var receivedError: CurrencyConvertUseCase.Error?
+        let (sut, cache) = makeSUT()
         
-        do {
-            _ = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
-        } catch {
-            receivedError = error as? CurrencyConvertUseCase.Error
+        await expect(sut, error: .exchangeRateNotFound) {
+            cache.completeFindById(with: makeNSError())
         }
-        
-        XCTAssertEqual(expecteError, receivedError)
     }
-
+    
     func test_convert_deliversErrorOnExchangeRateLoadingOperationCompletesEmpty() async {
-        let (sut, _) = makeSUT()
-        let brl = Currency(code: "BRL", name: "Real")
-        let usd = Currency(code: "USD", name: "Dólar")
-        let expecteError = CurrencyConvertUseCase.Error.exchangeRateNotFound
-        var receivedError: CurrencyConvertUseCase.Error?
+        let (sut, cache) = makeSUT()
         
-        do {
-            _ = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
-        } catch {
-            receivedError = error as? CurrencyConvertUseCase.Error
+        await expect(sut, error: .exchangeRateNotFound) {
+            cache.completeFindByIdWithEmpty()
         }
-        
-        XCTAssertEqual(expecteError, receivedError)
     }
     
     func test_convert_deliversConvertedValueCorreclty() async {
@@ -90,6 +74,26 @@ final class CurrencyConvertUseCaseTests: XCTestCase {
         
         return (sut, cache)
     }
+    
+    private func expect(_ sut: CurrencyConvertUseCase,
+                        error expectedError: CurrencyConvertUseCase.Error,
+                        when action: () -> Void,
+                        file: StaticString = #filePath,
+                        line: UInt = #line) async {
+        let brl = Currency(code: "BRL", name: "Real")
+        let usd = Currency(code: "USD", name: "Dólar")
+        var receivedError: CurrencyConvertUseCase.Error?
+        action()
+        
+        do {
+            _ = try await sut.convert(from: usd, toCurrency: brl, amount: 100.0)
+        } catch {
+            receivedError = error as? CurrencyConvertUseCase.Error
+        }
+        
+        XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+    }
+
 }
 
 private func makeCurrenciesModel() -> [Currency] {
