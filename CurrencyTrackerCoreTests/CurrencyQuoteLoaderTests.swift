@@ -76,6 +76,17 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_deliversNotFoundErrorOn404HTTPResponse() async {
+        let (sut, client) = makeSUT()
+        client.completeSuccess(with: Data("{}".utf8), statusCode: 404)
+        
+        do {
+            _ = try await sut.load(from: anyURL())
+        } catch {
+            XCTAssertEqual(error as? RemoteCurrencyQuoteLoader.LoadError, .currencyQuoteNotFound)
+        }
+    }
+    
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() async throws {
         let url = anyURL()
         let (sut, client) = makeSUT()

@@ -9,6 +9,10 @@ import Foundation
 
 enum CurrencyQuoteMapper {
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> [CurrencyQuote] {
+        guard response.statusCode != 404 else {
+            throw RemoteCurrencyQuoteLoader.LoadError.currencyQuoteNotFound
+        }
+        
         guard response.statusCode == 200 else {
             throw RemoteCurrencyQuoteLoader.LoadError.invalidResponse
         }

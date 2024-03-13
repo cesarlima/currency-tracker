@@ -13,6 +13,7 @@ public final class RemoteCurrencyQuoteLoader: CurrencyQuoteLoader {
     public enum LoadError: Error {
         case invalidResponse
         case invalidData
+        case currencyQuoteNotFound
     }
     
     public init(httpClient: HttpClient) {
