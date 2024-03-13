@@ -36,6 +36,7 @@ final class CurrencyConverterViewModel: ObservableObject {
         
         formatFromCurrencyAmount()
         cleanToCurrencyAmountOnFromCurrencyChanges()
+        cleanToCurrencyAmountOnToCurrencyChanges()
     }
     
     @MainActor
@@ -61,6 +62,14 @@ final class CurrencyConverterViewModel: ObservableObject {
                 alertItem = AlertContext.exchangeRateNotFound
             }
         }
+    }
+    
+    private func cleanToCurrencyAmountOnToCurrencyChanges() {
+        $toCurrency
+            .sink { [weak self] _ in
+                self?.toCurrencyAmount = ""
+            }
+            .store(in: &cancellables)
     }
     
     private func cleanToCurrencyAmountOnFromCurrencyChanges() {
