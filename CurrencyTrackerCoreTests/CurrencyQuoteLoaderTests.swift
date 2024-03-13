@@ -61,7 +61,6 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         
         httpCodes.enumerated().forEach { index, statusCode in
             client.completeSuccess(with: Data("{}".utf8), statusCode: statusCode)
-//            client.result = makeSuccessResponse(withStatusCode: statusCode, data: Data(), url: url)
             
             Task {
                 var didFailWithError: Error?
@@ -81,7 +80,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         let url = anyURL()
         let (sut, client) = makeSUT()
         client.completeSuccess(with: Data("invalid json".utf8))
-//        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("invalid json".utf8), url: url)
+
         var didFailWithError: Error?
         
         do {
@@ -97,7 +96,6 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         let url = anyURL()
         let (sut, client) = makeSUT()
         client.completeSuccess(with: Data("{}".utf8), statusCode: 200)
-//        client.result = makeSuccessResponse(withStatusCode: 200, data: Data("{}".utf8), url: url)
         
         do {
             let currencies = try await sut.load(from: url)
