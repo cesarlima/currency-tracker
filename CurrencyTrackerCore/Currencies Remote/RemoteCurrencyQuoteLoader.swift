@@ -10,12 +10,6 @@ import Foundation
 public final class RemoteCurrencyQuoteLoader: CurrencyQuoteLoader {
     private let httpClient: HttpClient
     
-    public enum LoadError: Error {
-        case invalidResponse
-        case invalidData
-        case currencyQuoteNotFound
-    }
-    
     public init(httpClient: HttpClient) {
         self.httpClient = httpClient
     }
@@ -27,4 +21,10 @@ public final class RemoteCurrencyQuoteLoader: CurrencyQuoteLoader {
         
         return result
     }
+}
+
+public enum LoadError: Error {
+    case invalidResponse
+    case invalidData
+    case currencyQuoteNotFound
 }
