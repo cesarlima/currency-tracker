@@ -2,6 +2,8 @@ Currency Tracker
 ==========
 Currency Tracker is an app designed to provide users with the ability to view and convert currency exchange rates.
 
+![](app-features.gif)
+
 ### Technologies and libraries
 The project was developed using Swift, SwiftUI, Core Data, Unit Tests.
 
