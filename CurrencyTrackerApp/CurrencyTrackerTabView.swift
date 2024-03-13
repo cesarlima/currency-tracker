@@ -29,15 +29,6 @@ struct CurrencyTrackerTabView: View {
                         .foregroundColor(Color.green)
                 }
                 .toolbarBackground(.visible, for: .tabBar)
-            
-            appComposer.composeCurrencyQuoteView()
-                .tabItem {
-                    Image(systemName: "clock")
-                    Text("Histórico")
-                        .bold()
-                        .foregroundColor(Color.green)
-                }
-                .toolbarBackground(.visible, for: .tabBar)
         }
     }
 }
