@@ -16,6 +16,10 @@ public final class CurrencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol {
     private let currencyQuoteCache: CurrencyQuoteCache
     private let url: URL
     
+    enum Error: Swift.Error {
+        case currencyQuoteNotFound
+    }
+    
     public init(url: URL, currencyQuoteLoader: CurrencyQuoteLoader, currencyQuoteCache: CurrencyQuoteCache) {
         self.url = url
         self.currencyQuoteLoader = currencyQuoteLoader
@@ -23,17 +27,27 @@ public final class CurrencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol {
     }
     
     public func load(toCurrency: String, from currencies: [Currency]) async throws -> [CurrencyQuote] {
-        
-        let remoteLoadResult = try? await currencyQuoteLoader.load(from: composeURL(toCurrency: toCurrency,
-                                                                                    currencies: currencies))
-        
-        if let remoteLoadResult, remoteLoadResult.isEmpty == false {
-            try? await currencyQuoteCache.save(quotes: remoteLoadResult)
-            return remoteLoadResult
+
+        do {
+            let remoteLoadResult = try await currencyQuoteLoader.load(from: composeURL(toCurrency: toCurrency,
+                                                                                        currencies: currencies))
+            
+            guard remoteLoadResult.isEmpty else {
+                try? await currencyQuoteCache.save(quotes: remoteLoadResult)
+                return remoteLoadResult
+            }
+            
+            return try await currencyQuoteCache.load(codeIn: toCurrency)
+            
+        } catch {
+            
+            if let receivedError = error as? LoadError,
+                case LoadError.currencyQuoteNotFound = receivedError {
+                throw error
+            } else {
+                return try await currencyQuoteCache.load(codeIn: toCurrency)
+            }
         }
-        
-        return try await currencyQuoteCache.load(codeIn: toCurrency)
-        
     }
     
     private func composeURL(toCurrency: String, currencies: [Currency]) -> URL {

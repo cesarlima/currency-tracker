@@ -55,6 +55,19 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
 
         XCTAssertEqual(store.receivedMessages, [.deleteCachedCurrencyQuote(toCurrency), .insert(makeCurrencies().models)])
     }
+    
+    func test_load_deliversNotFoundErrorOnRemoteLoadCompletesWithNotFound() async {
+        let (sut, _, httpClient) = makeSUT()
+        httpClient.completeSuccess(with: makeCurrencies().data, statusCode: 404)
+        
+        do {
+            _ = try await sut.load(toCurrency: "BRL", from: makeCurrenciesModel())
+            XCTAssertEqual(httpClient.requestedURLs.count, 1)
+            XCTFail("Expected failure but got success instead.")
+        } catch {
+            XCTAssertEqual(error as? LoadError, .currencyQuoteNotFound)
+        }
+    }
 
     // MARK: - Helpers
     
