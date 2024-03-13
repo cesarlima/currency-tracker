@@ -27,12 +27,12 @@ struct CurrencyConverterView: View {
                                  currencies: viewModel.currencies,
                                  editable: false)
                     
-                    Text("A última atualização da cotação de \(viewModel.fromCurrency.name) para \(viewModel.toCurrency.name) foi em 11/03/2024 15:00")
-                        .font(.caption)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.secondary)
-                        .padding(.top, 32)
-                        .padding([.leading, .trailing], 60)
+//                    Text("A última atualização da cotação de \(viewModel.fromCurrency.name) para \(viewModel.toCurrency.name) foi em 11/03/2024 15:00")
+//                        .font(.caption)
+//                        .multilineTextAlignment(.center)
+//                        .foregroundColor(.secondary)
+//                        .padding(.top, 32)
+//                        .padding([.leading, .trailing], 60)
                     
                     Spacer()
                     
