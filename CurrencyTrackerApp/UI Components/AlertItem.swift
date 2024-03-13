@@ -24,6 +24,7 @@ struct AlertItem: Identifiable {
 
 enum AlertContext {
     static let loadQuotesGenericError = AlertItem(message: "Não foi possível carregar as cotações, tente novamente em instantes.")
+    static let currencyQuotesNotFound = AlertItem(message: "No momento não existem quotações para a moeda selecionada.")
 }
 
 // MARK: - Currency Converter

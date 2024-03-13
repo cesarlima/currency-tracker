@@ -32,10 +32,20 @@ final class CurrencyQuoteViewModel: ObservableObject {
         
         isLoading = true
         do {
-            currencyQuotes = try await currencyQuoteLoadUseCase.load(toCurrency: selectedCurrency.code,
-                                                                     from: currencies)
+            let result = try await currencyQuoteLoadUseCase.load(toCurrency: selectedCurrency.code,
+                                                                 from: currencies)
+            if result.isEmpty {
+                alertItem = AlertContext.loadQuotesGenericError
+            }
+            
+            currencyQuotes = result
         } catch {
-            alertItem = AlertContext.loadQuotesGenericError
+            if let receivedError = error as? RemoteQuoteLoaderError,
+               case RemoteQuoteLoaderError.currencyQuoteNotFound = receivedError {
+                alertItem = AlertContext.currencyQuotesNotFound
+            } else {
+                alertItem = AlertContext.loadQuotesGenericError
+            }
         }
     }
 }
