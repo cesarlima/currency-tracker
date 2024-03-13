@@ -18,7 +18,8 @@ struct CurrencyView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .stroke(Color.gray, lineWidth: 0.5)
-            .frame(maxWidth: .infinity, maxHeight: 70)
+            .frame(maxWidth: .infinity)
+            .frame(height: 70)
             .padding(16)
             .overlay(
                 VStack(alignment: .center, spacing:3) {
