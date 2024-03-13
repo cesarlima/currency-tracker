@@ -11,10 +11,11 @@ import CurrencyTrackerCore
 
 final class CurrencyConverterViewModel: ObservableObject {
     @Published var fromCurrencyAmount: String = "1"
-    @Published var fromCurrency: Currency = Currency(code: "USD", name: "Dólar")
+    @Published var fromCurrency = Currency.usd
     @Published var toCurrencyAmount: String = ""
-    @Published var toCurrency: Currency = Currency(code: "BRL", name: "Real")
+    @Published var toCurrency = Currency.brl
     @Published var isShowingAlert = false
+    let currencies = Currency.availables
     private(set) var alertItem: AlertItem? {
         didSet {
             isShowingAlert = true

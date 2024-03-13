@@ -10,8 +10,6 @@ import CurrencyTrackerCore
 
 struct CurrencyConverterView: View {
     @FocusState private var currentCurrencyFocused: Bool
-    let currencies: [Currency] = MockData.currencies
-    
     @StateObject var viewModel: CurrencyConverterViewModel
     
     var body: some View {
@@ -20,13 +18,13 @@ struct CurrencyConverterView: View {
                 VStack {
                     CurrencyView(amount: $viewModel.fromCurrencyAmount,
                                  selectedCurrency: $viewModel.fromCurrency,
-                                 currencies: MockData.currencies,
+                                 currencies: viewModel.currencies,
                                  editable: true)
                     .focused($currentCurrencyFocused)
                     
                     CurrencyView(amount: $viewModel.toCurrencyAmount,
                                  selectedCurrency: $viewModel.toCurrency,
-                                 currencies: currencies,
+                                 currencies: viewModel.currencies,
                                  editable: false)
                     
                     Text("A última atualização da cotação de \(viewModel.fromCurrency.name) para \(viewModel.toCurrency.name) foi em 11/03/2024 15:00")
