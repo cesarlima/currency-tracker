@@ -21,8 +21,7 @@ struct CurrencyTrackerTabView: View {
                 }
                 .toolbarBackground(.visible, for: .tabBar)
                 
-            
-            appComposer.composeCurrencyQuoteView()
+            appComposer.composeCurrencyConverterView()
                 .tabItem {
                     Image(systemName: "candybarphone")
                     Text("Calculadora")
