@@ -20,10 +20,13 @@ struct CurrencyQuoteCell: View {
             
             VStack(alignment: .leading, spacing: 6) {
                 Text(currencyQuote.name)
+                    .font(.callout)
                 Text(currencyQuote.quote, format: .currency(code: currencyQuote.codeIn))
+                    .font(.callout)
                 Text(DateFormatter.format(date: currencyQuote.quoteDate))
+                    .font(.callout)
             }
-            .frame(width: 170, alignment: .leading)
+            .frame(width: 150, alignment: .leading)
         }
     }
 }
