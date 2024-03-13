@@ -65,7 +65,7 @@ final class CurrencyQuoteLoadUseCaseTests: XCTestCase {
             XCTAssertEqual(httpClient.requestedURLs.count, 1)
             XCTFail("Expected failure but got success instead.")
         } catch {
-            XCTAssertEqual(error as? LoadError, .currencyQuoteNotFound)
+            XCTAssertEqual(error as? RemoteQuoteLoaderError, .currencyQuoteNotFound)
         }
     }
 

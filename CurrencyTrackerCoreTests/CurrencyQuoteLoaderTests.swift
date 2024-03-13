@@ -71,7 +71,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
                     didFailWithError = error
                 }
                 
-                XCTAssertEqual(didFailWithError as! LoadError, .invalidResponse)
+                XCTAssertEqual(didFailWithError as! RemoteQuoteLoaderError, .invalidResponse)
             }
         }
     }
@@ -83,7 +83,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
         do {
             _ = try await sut.load(from: anyURL())
         } catch {
-            XCTAssertEqual(error as? LoadError, .currencyQuoteNotFound)
+            XCTAssertEqual(error as? RemoteQuoteLoaderError, .currencyQuoteNotFound)
         }
     }
     
@@ -100,7 +100,7 @@ final class CurrencyQuoteLoaderTests: XCTestCase {
             didFailWithError = error
         }
         
-        XCTAssertEqual(didFailWithError as! LoadError, .invalidData)
+        XCTAssertEqual(didFailWithError as! RemoteQuoteLoaderError, .invalidData)
     }
     
     func test_load_deliversNoCurrenciesOn200HTTPResponseWithEmptyJSON() async throws {

@@ -10,11 +10,11 @@ import Foundation
 enum CurrencyQuoteMapper {
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> [CurrencyQuote] {
         guard response.statusCode != 404 else {
-            throw LoadError.currencyQuoteNotFound
+            throw RemoteQuoteLoaderError.currencyQuoteNotFound
         }
         
         guard response.statusCode == 200 else {
-            throw LoadError.invalidResponse
+            throw RemoteQuoteLoaderError.invalidResponse
         }
         
         do {
@@ -22,7 +22,7 @@ enum CurrencyQuoteMapper {
             let currencies = jsonDict.compactMap { CurrencyQuote(json: $0.value) }.sorted { $0.code < $1.code }
             return currencies
         } catch {
-            throw LoadError.invalidData
+            throw RemoteQuoteLoaderError.invalidData
         }
     }
 }

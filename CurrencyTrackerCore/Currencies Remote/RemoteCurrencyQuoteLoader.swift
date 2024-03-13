@@ -23,7 +23,7 @@ public final class RemoteCurrencyQuoteLoader: CurrencyQuoteLoader {
     }
 }
 
-public enum LoadError: Error {
+public enum RemoteQuoteLoaderError: Error {
     case invalidResponse
     case invalidData
     case currencyQuoteNotFound

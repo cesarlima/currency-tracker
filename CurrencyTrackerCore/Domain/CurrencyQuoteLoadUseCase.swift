@@ -41,8 +41,8 @@ public final class CurrencyQuoteLoadUseCase: CurrencyQuoteLoadUseCaseProtocol {
             
         } catch {
             
-            if let receivedError = error as? LoadError,
-                case LoadError.currencyQuoteNotFound = receivedError {
+            if let receivedError = error as? RemoteQuoteLoaderError,
+                case RemoteQuoteLoaderError.currencyQuoteNotFound = receivedError {
                 throw error
             } else {
                 return try await currencyQuoteCache.load(codeIn: toCurrency)
