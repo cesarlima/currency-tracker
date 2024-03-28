@@ -1,5 +1,8 @@
 Currency Tracker
 ==========
+
+![](https://github.com/cesarlima/currency-tracker/workflows/CI-macOS/badge.svg)
+
 Currency Tracker is an app designed to provide users with the ability to view and convert currency exchange rates.
 
 ![](app-features.gif)
